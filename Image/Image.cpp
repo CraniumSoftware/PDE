@@ -11,8 +11,8 @@ Image::Image()
 //, meReferenceFrame( SOLAR_SYSTEM_BARYCENTRE )
 , miLineWidth( 0 )
 , miLineCount( 0 )
-, mfFilterWavelengthLongest( 0.0f )
-, mfFilterWavelengthShortest( 0.0f )
+, mfFilterWavelengthShortest( 280.0f )
+, mfFilterWavelengthLongest( 640.0f )
 {
 
 }
