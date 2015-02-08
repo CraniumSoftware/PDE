@@ -15,13 +15,13 @@ struct KeplerElements
     double JDTZero;
 };
 
-class KeplerEphemeris
-: public OrbitalEphemeris< KeplerEphemeris >
+class KeplerOrbitalEphemeris
+: public OrbitalEphemeris< KeplerOrbitalEphemeris >
 {
 
 public:
 
-    KeplerEphemeris( const KeplerElements& xElements )
+    KeplerOrbitalEphemeris( const KeplerElements& xElements )
     : mkxElements( xElements )
     {
     }
@@ -62,7 +62,7 @@ public:
         // work out the position relative to the orbit
         const double dMeanAnomalyAtT = dMeanAnomaly + dLongitudeRate * dT;
         const EphemerisVector4 xPositionInPlane = EvaluatePositionInPlane( dEccentricity, dSemiMajorAxis,
-            KeplerEphemeris::EccentricAnomaly< 5 >( dMeanAnomalyAtT, dEccentricity ) );
+            KeplerOrbitalEphemeris::EccentricAnomaly< 5 >( dMeanAnomalyAtT, dEccentricity ) );
 
         // rotate into the space described by the remaining orbital elements
         const double dCosW = Maths::Cos( dArgumentOfPerifocus );
