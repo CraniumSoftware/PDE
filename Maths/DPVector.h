@@ -25,12 +25,12 @@ public:
         maComponents[ 1 ] = xOther[ 1 ];
     }
 
-    float Max() const { return Maths::Max( maComponents[ 0 ], maComponents[ 1 ] ); }
-    float Min() const { return Maths::Min( maComponents[ 0 ], maComponents[ 1 ] ); }
+    double Max() const { return Maths::Max( maComponents[ 0 ], maComponents[ 1 ] ); }
+    double Min( ) const { return Maths::Min( maComponents[ 0 ], maComponents[ 1 ] ); }
 
-    Vector2 xx() const { return Vector2( maComponents[ 0 ] ); }
-    Vector2 yy() const { return Vector2( maComponents[ 1 ] ); }
-    Vector2 yx() const { return Vector2( maComponents[ 1 ], maComponents[ 0 ] ); }
+    DPVector2 xx() const { return DPVector2( maComponents[ 0 ] ); }
+    DPVector2 yy() const { return DPVector2( maComponents[ 1 ] ); }
+    DPVector2 yx() const { return DPVector2( maComponents[ 1 ], maComponents[ 0 ] ); }
 
     DPVector2 FastRotate90CCW() const
     {
@@ -80,8 +80,8 @@ public:
         maComponents[ 2 ] = z;
     }
 
-    float Max() const { return Maths::Max( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
-    float Min() const { return Maths::Min( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
+    double Max() const { return Maths::Max( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
+    double Min() const { return Maths::Min( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
 
     static DPVector3 FromEllipsoid( const double dLongitude, const double dLatitude, const double dPolar, const double dEquatorial )
     {
