@@ -13,12 +13,15 @@
 #include "Maths/DPVector.h"
 
 #define EphemerisVector4 DPVector4
+#define EphemerisFloat double
 
 template< class Implementation >
 class OrbitalEphemeris
 {
 
 public:
+
+    OrbitalEphemeris() {}
 
     // derived quantities from those exposed by Implementation
     EphemerisVector4 CalculatePosition( const EphemerisVector4& xObserver ) const
@@ -82,7 +85,9 @@ protected:
             0.0 );
     }
 
-private:
+protected:
+
+    HIDE_BUILT_IN_COPIES( OrbitalEphemeris );
 
 };
 
