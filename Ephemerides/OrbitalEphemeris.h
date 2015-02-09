@@ -78,10 +78,10 @@ protected:
     static EphemerisVector4 PositionFromLatLonRad( const double dLatitude, const double dLongitude, const double dRadius )
     {
         const double dCosLatitude = Maths::Cos( dLatitude );
-        return EphemerisVector4(
-            dRadius * dCosLatitude * Maths::Cos( dLongitude ),
-            dRadius * dCosLatitude * Maths::Sin( dLongitude ),
-            dRadius * Maths::Sin( dLatitude ),
+        return dRadius * EphemerisVector4(
+            dCosLatitude * Maths::Cos( dLongitude ),
+            dCosLatitude * Maths::Sin( dLongitude ),
+            Maths::Sin( dLatitude ),
             0.0 );
     }
 
