@@ -9,20 +9,20 @@ class PrecessingKeplerOrbitalEphemeris
 
 public:
 
-    PrecessingKeplerOrbitalEphemeris( const KeplerElements& xElements, const double dPrecessionRate )
-    : LinearPerturbedKeplerOrbitalEphemeris( xElements, RatesFromPrecession( dPrecessionRate ) )
+    PrecessingKeplerOrbitalEphemeris( const KeplerElements& xElements, const double dApsidalPrecessionRate, const double dNodalPrecessionRate = 0.0 )
+    : LinearPerturbedKeplerOrbitalEphemeris( xElements, RatesFromPrecession( dApsidalPrecessionRate, dNodalPrecessionRate ) )
     {
     }
 
 private:
 
-    static KeplerElements RatesFromPrecession( const double dPrecessionRate )
+    static KeplerElements RatesFromPrecession( const double dApsidalPrecessionRate, const double dNodalPrecessionRate )
     {
         KeplerElements xElements =
         {
+            dNodalPrecessionRate,
             0.0,
-            0.0,
-            dPrecessionRate,
+            dApsidalPrecessionRate,
             0.0,
             0.0,
             0.0,
