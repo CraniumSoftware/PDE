@@ -1,17 +1,17 @@
-#ifndef PETURBED_KEPLER_ORBIT_H
-#define PETURBED_KEPLER_ORBIT_H
+#ifndef PerturbED_KEPLER_ORBIT_H
+#define PerturbED_KEPLER_ORBIT_H
 
 #include "KeplerOrbit.h"
 
-class LinearPeturbedKeplerOrbitalEphemeris
-: public OrbitalEphemeris< LinearPeturbedKeplerOrbitalEphemeris >
+class LinearPerturbedKeplerOrbitalEphemeris
+: public OrbitalEphemeris< LinearPerturbedKeplerOrbitalEphemeris >
 {
 
 public:
 
-    LinearPeturbedKeplerOrbitalEphemeris( const KeplerElements& xElements, const KeplerElements& xPeturbations )
+    LinearPerturbedKeplerOrbitalEphemeris( const KeplerElements& xElements, const KeplerElements& xPerturbations )
     : mkxElements( xElements )
-    , mkxPeturbations( xPeturbations )
+    , mkxPerturbations( xPerturbations )
     {
 
     }
@@ -19,52 +19,52 @@ public:
     EphemerisVector4 EvaluateEphemeris( const EphemerisFloat& xJDT ) const
     {
         const double dT = static_cast< double >( xJDT - mkxElements.JDTZero );
-        return Evaluate( mkxElements, mkxPeturbations, dT );
+        return Evaluate( mkxElements, mkxPerturbations, dT );
     }
 
     static EphemerisVector4 Evaluate(
         const KeplerElements xElements,
-        const KeplerElements xPeturbations,
+        const KeplerElements xPerturbations,
         const double dT )
     {
         return KeplerOrbitalEphemeris::Evaluate(
-            xElements.LongitudeOfAscendingNode + xPeturbations.LongitudeOfAscendingNode * dT,
-            xElements.Inclination + xPeturbations.Inclination * dT,
-            xElements.ArgumentOfPerifocus + xPeturbations.ArgumentOfPerifocus * dT,
-            xElements.SemiMajorAxis + xPeturbations.SemiMajorAxis * dT,
-            xElements.Eccentricity + xPeturbations.Eccentricity * dT,
-            xElements.MeanAnomaly + xPeturbations.MeanAnomaly * dT,
+            xElements.LongitudeOfAscendingNode + xPerturbations.LongitudeOfAscendingNode * dT,
+            xElements.Inclination + xPerturbations.Inclination * dT,
+            xElements.ArgumentOfPerifocus + xPerturbations.ArgumentOfPerifocus * dT,
+            xElements.SemiMajorAxis + xPerturbations.SemiMajorAxis * dT,
+            xElements.Eccentricity + xPerturbations.Eccentricity * dT,
+            xElements.MeanAnomaly + xPerturbations.MeanAnomaly * dT,
             xElements.LongitudeRate,
             dT );
     }
 
     double EvaluateSemiMajorAxis( const EphemerisFloat& xJDT ) const
     {
-        return mkxElements.SemiMajorAxis + mkxPeturbations.SemiMajorAxis * static_cast< double >( xJDT - mkxElements.JDTZero );
+        return mkxElements.SemiMajorAxis + mkxPerturbations.SemiMajorAxis * static_cast< double >( xJDT - mkxElements.JDTZero );
     }
 
     double EvaluateEccentricity( const EphemerisFloat& xJDT ) const
     {
-        return mkxElements.Eccentricity + mkxPeturbations.Eccentricity * static_cast< double >( xJDT - mkxElements.JDTZero );
+        return mkxElements.Eccentricity + mkxPerturbations.Eccentricity * static_cast< double >( xJDT - mkxElements.JDTZero );
     }
 
 private:
 
     const KeplerElements mkxElements;
-    const KeplerElements mkxPeturbations;
+    const KeplerElements mkxPerturbations;
 
 };
 
 template< class Implementation >
-class SpeciallyPeturbedKeplerOrbitalEphemeris
+class SpeciallyPerturbedKeplerOrbitalEphemeris
 : public OrbitalEphemeris< Implementation >
 {
 
 public:
 
-    SpeciallyPeturbedKeplerOrbitalEphemeris( const KeplerElements& xElements, const KeplerElements& xPeturbations )
+    SpeciallyPerturbedKeplerOrbitalEphemeris( const KeplerElements& xElements, const KeplerElements& xPerturbations )
     : mkxElements( xElements )
-    , mkxPeturbations( xPeturbations )
+    , mkxPerturbations( xPerturbations )
     {
 
     }
@@ -72,11 +72,11 @@ public:
     EphemerisVector4 EvaluateEphemeris( const EphemerisFloat& xJDT ) const
     {
         const double dT = static_cast< double >( xJDT - mkxElements.JDTZero );
-        return static_cast< const Implementation* >( this )->Peturb(
-            LinearPeturbedKeplerOrbitalEphemeris::Evaluate( mkxElements, mkxPeturbations, dT ), dT );
+        return static_cast< const Implementation* >( this )->Perturb(
+            LinearPerturbedKeplerOrbitalEphemeris::Evaluate( mkxElements, mkxPerturbations, dT ), dT );
     }
 
-    EphemerisVector4 Peturb( const EphemerisVector4 xPosition, const double dT ) const
+    EphemerisVector4 Perturb( const EphemerisVector4 xPosition, const double dT ) const
     {
         UNUSED( dT );
         return xPosition;
@@ -85,7 +85,7 @@ public:
 private:
 
     const KeplerElements mkxElements;
-    const KeplerElements mkxPeturbations;
+    const KeplerElements mkxPerturbations;
 
 };
 

@@ -17,7 +17,7 @@ const KeplerElements SaturnSchlyterOrbitalEphemeris::kxBaseElements =
     static_cast< double >( J2000 )
 };
 
-const KeplerElements SaturnSchlyterOrbitalEphemeris::kxLinearPeturbations =
+const KeplerElements SaturnSchlyterOrbitalEphemeris::kxLinearPerturbations =
 {
     Maths::Deg2Rad( 0.00002398 ),
     Maths::Deg2Rad( 0.0000001081 ),
@@ -30,7 +30,7 @@ const KeplerElements SaturnSchlyterOrbitalEphemeris::kxLinearPeturbations =
 };
 
 // based on work by Paul Schlyter - http://stjarnhimlen.se/
-EphemerisVector4 SaturnSchlyterOrbitalEphemeris::Peturb( const EphemerisVector4 xPosition, const double dT ) const
+EphemerisVector4 SaturnSchlyterOrbitalEphemeris::Perturb( const EphemerisVector4 xPosition, const double dT ) const
 {
     const double dEclipticLongitude = CalculateLongitude( xPosition );
     const double dEclipticLatititude = CalculateLatitude( xPosition );

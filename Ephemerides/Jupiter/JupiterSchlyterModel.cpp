@@ -17,7 +17,7 @@ const KeplerElements JupiterSchlyterOrbitalEphemeris::kxBaseElements =
     static_cast< double >( J2000 )
 };
 
-const KeplerElements JupiterSchlyterOrbitalEphemeris::kxLinearPeturbations =
+const KeplerElements JupiterSchlyterOrbitalEphemeris::kxLinearPerturbations =
 {
     Maths::Deg2Rad( 0.0000276854 ),
     Maths::Deg2Rad( 0.0000001557 ),
@@ -29,7 +29,7 @@ const KeplerElements JupiterSchlyterOrbitalEphemeris::kxLinearPeturbations =
     0.0
 };
 
-EphemerisVector4 JupiterSchlyterOrbitalEphemeris::Peturb( const EphemerisVector4 xPosition, const double dT ) const
+EphemerisVector4 JupiterSchlyterOrbitalEphemeris::Perturb( const EphemerisVector4 xPosition, const double dT ) const
 {
     const double dEclipticLongitude = CalculateLongitude( xPosition );
 
@@ -80,8 +80,7 @@ N = 8.332231561092862E-02 MA= 1.978683053394646E+01 TA= 2.174239396258118E+01
 A = 5.188896165538577E+00 AD= 5.435914968904254E+00 PR= 4.320571234253865E+03
 $$EOE
 
-a good check is that the mean anomaly is about 19 degrees (about 0.35 radians)
-and the elements are very similar to what are defined below.
+a good check is that the elements are very similar to the ones we use...
 
 some state vectors:
 
