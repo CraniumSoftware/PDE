@@ -14,7 +14,7 @@ const KeplerElements JupiterSchlyterOrbitalEphemeris::kxBaseElements =
     0.048498,
     Maths::Deg2Rad( 19.8950 ),
     Maths::Deg2Rad( 0.0830853001 ),
-    static_cast< double >( J2000 )
+    static_cast< double >( J2000 - 1.5 )    // SE - NOTE: these elements have an epoch of '0' Jan 2000, 1.5 days before J2000.0
 };
 
 const KeplerElements JupiterSchlyterOrbitalEphemeris::kxLinearPerturbations =

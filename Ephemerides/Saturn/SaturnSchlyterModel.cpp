@@ -10,11 +10,11 @@ const KeplerElements SaturnSchlyterOrbitalEphemeris::kxBaseElements =
     Maths::Deg2Rad( 113.6634 ),
     Maths::Deg2Rad( 2.4886 ),
     Maths::Deg2Rad( 339.3939 ),
-    9.55475,                        // SE - NOTE: this value is in AU
+    9.55475,                                // SE - NOTE: this value is in AU
     0.055546,
     Maths::Deg2Rad( 316.9670 ),
     Maths::Deg2Rad( 0.0334442282 ),
-    static_cast< double >( J2000 )
+    static_cast< double >( J2000 - 1.5 )    // SE - NOTE: these elements have an epoch of '0' Jan 2000, 1.5 days before J2000.0
 };
 
 const KeplerElements SaturnSchlyterOrbitalEphemeris::kxLinearPerturbations =
