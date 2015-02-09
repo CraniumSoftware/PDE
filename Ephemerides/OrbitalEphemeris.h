@@ -85,7 +85,7 @@ protected:
             0.0 );
     }
 
-protected:
+private:
 
     HIDE_BUILT_IN_COPIES( OrbitalEphemeris );
 
