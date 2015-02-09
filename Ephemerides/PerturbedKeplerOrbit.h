@@ -1,5 +1,5 @@
-#ifndef PerturbED_KEPLER_ORBIT_H
-#define PerturbED_KEPLER_ORBIT_H
+#ifndef PERTURBED_KEPLER_ORBIT_H
+#define PERTURBED_KEPLER_ORBIT_H
 
 #include "KeplerOrbit.h"
 
