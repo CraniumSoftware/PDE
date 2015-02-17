@@ -15,6 +15,11 @@ struct KeplerElements
     double JDTZero;
 };
 
+// use some expanded matrix rotations from the Paul Schlyter excellent guide
+// to calculating rough planetary positions...
+
+#define USE_SCHLYTER_MATHS ( 1 )
+
 class KeplerOrbitalEphemeris
 : public OrbitalEphemeris< KeplerOrbitalEphemeris >
 {
@@ -64,6 +69,20 @@ public:
         const EphemerisVector4 xPositionInPlane = EvaluatePositionInPlane( dEccentricity, dSemiMajorAxis,
             KeplerOrbitalEphemeris::EccentricAnomaly< 5 >( dMeanAnomalyAtT, dEccentricity ) );
 
+        // SE - TODO: debug this, the step-by-step version made sense in my head at least...
+#if USE_SCHLYTER_MATHS
+        // SE - NOTE: for clarity map everything to the variables used by Paul Schlyter
+        const EphemerisFloat r = xPositionInPlane.xy().Magnitude();
+        const EphemerisFloat v = Maths::Atan2( xPositionInPlane.y(), xPositionInPlane.x() );
+        const EphemerisFloat N = dLongitudeOfAscendingNode;
+        const EphemerisFloat i = dInclination;
+        const EphemerisFloat w = dArgumentOfPerifocus;
+        return EphemerisVector4(
+            r * ( cos( N ) * cos( v + w ) - sin( N ) * sin( v + w ) * cos( i ) ),
+            r * ( sin( N ) * cos( v + w ) + cos( N ) * sin( v + w ) * cos( i ) ),
+            r * sin( v + w ) * sin( i ),
+            xPositionInPlane.w() );
+#else
         // rotate into the space described by the remaining orbital elements
         const double dCosW = Maths::Cos( dArgumentOfPerifocus );
         const double dSinW = Maths::Sin( dArgumentOfPerifocus );
@@ -90,6 +109,7 @@ public:
             xInclined.x() * dCosN + xInclined.y() * dSinN,
             xInclined.y() * dCosN - xInclined.x() * dSinN,
             xInclined.z(), xInclined.w() );
+#endif
     }
 
 private:
