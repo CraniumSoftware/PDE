@@ -52,8 +52,8 @@ public:
 
 	EphemerisVector4 Evaluate( const double dTCenturies ) const
 	{
-		const double dLatitude = EvaluateLongitude( dTCenturies );
-		const double dLongitude = EvaluateLatitude( dTCenturies );
+		const double dLatitude = EvaluateLatitude( dTCenturies );
+		const double dLongitude = EvaluateLongitude( dTCenturies );
 		const double dRadius = EvaluateRadius( dTCenturies );
 
 		return PositionFromLatLonRad( dLatitude, dLongitude, dRadius );
@@ -126,7 +126,7 @@ private:
 			+ dResults[ 3 ] ) * dTCenturies
 			+ dResults[ 2 ] ) * dTCenturies
 			+ dResults[ 1 ] ) * dTCenturies + dResults[ 0 ] )
-				/ 100000000;
+				/ 100000000.0;
 	}
 
 	const VSOP87Term* mpxL0;
