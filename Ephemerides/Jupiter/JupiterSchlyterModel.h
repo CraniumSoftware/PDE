@@ -3,21 +3,21 @@
 
 // based on work by Paul Schlyter - http://stjarnhimlen.se/
 
-#include "Ephemerides/PeturbedKeplerOrbit.h"
+#include "Ephemerides/PerturbedKeplerOrbit.h"
 
 class JupiterSchlyterOrbitalEphemeris
-: public SpeciallyPeturbedKeplerOrbitalEphemeris< JupiterSchlyterOrbitalEphemeris >
+: public SpeciallyPerturbedKeplerOrbitalEphemeris< JupiterSchlyterOrbitalEphemeris >
 {
 
 public:
 
     JupiterSchlyterOrbitalEphemeris()
-    : SpeciallyPeturbedKeplerOrbitalEphemeris( kxBaseElements, kxLinearPeturbations )
+    : SpeciallyPerturbedKeplerOrbitalEphemeris( kxBaseElements, kxLinearPerturbations )
     {
 
     }
 
-    EphemerisVector4 Peturb( const EphemerisVector4 xPosition, const double dT ) const;
+    EphemerisVector4 Perturb( const EphemerisVector4 xPosition, const double dT ) const;
 
     static double MeanAnomaly( const double dT )
     {
@@ -27,7 +27,7 @@ public:
 private:
 
     static const KeplerElements kxBaseElements;
-    static const KeplerElements kxLinearPeturbations;
+    static const KeplerElements kxLinearPerturbations;
 
 };
 
