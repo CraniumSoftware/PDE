@@ -3,6 +3,49 @@
 
 #include "KeplerOrbit.h"
 
+#define DECLARE_TERMS_LBR5 \
+	static const VSOP87Term kaxL0[];  \
+	static const VSOP87Term kaxL1[];  \
+	static const VSOP87Term kaxL2[];  \
+	static const VSOP87Term kaxL3[];  \
+	static const VSOP87Term kaxL4[];  \
+	static const VSOP87Term kaxL5[];  \
+	\
+	static const VSOP87Term kaxB0[];  \
+	static const VSOP87Term kaxB1[];  \
+	static const VSOP87Term kaxB2[];  \
+	static const VSOP87Term kaxB3[];  \
+	static const VSOP87Term kaxB4[];  \
+	static const VSOP87Term kaxB5[];  \
+	\
+	static const VSOP87Term kaxR0[];  \
+	static const VSOP87Term kaxR1[];  \
+	static const VSOP87Term kaxR2[];  \
+	static const VSOP87Term kaxR3[];  \
+	static const VSOP87Term kaxR4[];  \
+	static const VSOP87Term kaxR5[]
+
+#define INITIALISE_TERMS_LBR5() \
+	VSOP87OrbitalEphemeris(								\
+		kaxL0, sizeof( kaxL0 ) / sizeof( kaxL0[ 0 ] ),	\
+		kaxL1, sizeof( kaxL1 ) / sizeof( kaxL1[ 0 ] ),	\
+		kaxL2, sizeof( kaxL2 ) / sizeof( kaxL2[ 0 ] ),	\
+		kaxL3, sizeof( kaxL3 ) / sizeof( kaxL3[ 0 ] ),	\
+		kaxL4, sizeof( kaxL4 ) / sizeof( kaxL4[ 0 ] ),	\
+		kaxL5, sizeof( kaxL5 ) / sizeof( kaxL5[ 0 ] ),	\
+		kaxB0, sizeof( kaxB0 ) / sizeof( kaxB0[ 0 ] ),	\
+		kaxB1, sizeof( kaxB1 ) / sizeof( kaxB1[ 0 ] ),	\
+		kaxB2, sizeof( kaxB2 ) / sizeof( kaxB2[ 0 ] ),	\
+		kaxB3, sizeof( kaxB3 ) / sizeof( kaxB3[ 0 ] ),	\
+		kaxB4, sizeof( kaxB4 ) / sizeof( kaxB4[ 0 ] ),	\
+		kaxB5, sizeof( kaxB5 ) / sizeof( kaxB5[ 0 ] ),	\
+		kaxR0, sizeof( kaxR0 ) / sizeof( kaxR0[ 0 ] ),	\
+		kaxR1, sizeof( kaxR1 ) / sizeof( kaxR1[ 0 ] ),	\
+		kaxR2, sizeof( kaxR2 ) / sizeof( kaxR2[ 0 ] ),	\
+		kaxR3, sizeof( kaxR3 ) / sizeof( kaxR3[ 0 ] ),	\
+		kaxR4, sizeof( kaxR4 ) / sizeof( kaxR4[ 0 ] ),	\
+		kaxR5, sizeof( kaxR5 ) / sizeof( kaxR5[ 0 ] ) )
+
 struct VSOP87Term
 {
 	double mdA;

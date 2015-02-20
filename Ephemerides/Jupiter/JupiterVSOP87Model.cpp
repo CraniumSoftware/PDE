@@ -571,25 +571,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR5[] =
 };
 
 JupiterVSOP87OrbitalEphemeris::JupiterVSOP87OrbitalEphemeris()
-: VSOP87OrbitalEphemeris(
-	kaxL0, sizeof( kaxL0 ) / sizeof( kaxL0[ 0 ] ),
-	kaxL1, sizeof( kaxL1 ) / sizeof( kaxL1[ 0 ] ),
-	kaxL2, sizeof( kaxL2 ) / sizeof( kaxL2[ 0 ] ),
-	kaxL3, sizeof( kaxL3 ) / sizeof( kaxL3[ 0 ] ),
-	kaxL4, sizeof( kaxL4 ) / sizeof( kaxL4[ 0 ] ),
-	kaxL5, sizeof( kaxL5 ) / sizeof( kaxL5[ 0 ] ),
-	kaxB0, sizeof( kaxB0 ) / sizeof( kaxB0[ 0 ] ),
-	kaxB1, sizeof( kaxB1 ) / sizeof( kaxB1[ 0 ] ),
-	kaxB2, sizeof( kaxB2 ) / sizeof( kaxB2[ 0 ] ),
-	kaxB3, sizeof( kaxB3 ) / sizeof( kaxB3[ 0 ] ),
-	kaxB4, sizeof( kaxB4 ) / sizeof( kaxB4[ 0 ] ),
-	kaxB5, sizeof( kaxB5 ) / sizeof( kaxB5[ 0 ] ),
-	kaxR0, sizeof( kaxR0 ) / sizeof( kaxR0[ 0 ] ),
-	kaxR1, sizeof( kaxR1 ) / sizeof( kaxR1[ 0 ] ),
-	kaxR2, sizeof( kaxR2 ) / sizeof( kaxR2[ 0 ] ),
-	kaxR3, sizeof( kaxR3 ) / sizeof( kaxR3[ 0 ] ),
-	kaxR4, sizeof( kaxR4 ) / sizeof( kaxR4[ 0 ] ),
-	kaxR5, sizeof( kaxR5 ) / sizeof( kaxR5[ 0 ] ) )
+: INITIALISE_TERMS_LBR5()
 {
 
 }
