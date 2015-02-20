@@ -3,6 +3,25 @@
 
 #include "KeplerOrbit.h"
 
+#define DECLARE_TERMS_LBR4 \
+	static const VSOP87Term kaxL0[];  \
+	static const VSOP87Term kaxL1[];  \
+	static const VSOP87Term kaxL2[];  \
+	static const VSOP87Term kaxL3[];  \
+	static const VSOP87Term kaxL4[];  \
+	\
+	static const VSOP87Term kaxB0[];  \
+	static const VSOP87Term kaxB1[];  \
+	static const VSOP87Term kaxB2[];  \
+	static const VSOP87Term kaxB3[];  \
+	static const VSOP87Term kaxB4[];  \
+	\
+	static const VSOP87Term kaxR0[];  \
+	static const VSOP87Term kaxR1[];  \
+	static const VSOP87Term kaxR2[];  \
+	static const VSOP87Term kaxR3[];  \
+	static const VSOP87Term kaxR4[];
+
 #define DECLARE_TERMS_LBR5 \
 	static const VSOP87Term kaxL0[];  \
 	static const VSOP87Term kaxL1[];  \
@@ -24,6 +43,27 @@
 	static const VSOP87Term kaxR3[];  \
 	static const VSOP87Term kaxR4[];  \
 	static const VSOP87Term kaxR5[]
+
+#define INITIALISE_TERMS_LBR4() \
+	VSOP87OrbitalEphemeris( \
+		kaxL0, sizeof( kaxL0 ) / sizeof( kaxL0[ 0 ] ), \
+		kaxL1, sizeof( kaxL1 ) / sizeof( kaxL1[ 0 ] ), \
+		kaxL2, sizeof( kaxL2 ) / sizeof( kaxL2[ 0 ] ), \
+		kaxL3, sizeof( kaxL3 ) / sizeof( kaxL3[ 0 ] ), \
+		kaxL4, sizeof( kaxL4 ) / sizeof( kaxL4[ 0 ] ), \
+		0, 0, \
+		kaxB0, sizeof( kaxB0 ) / sizeof( kaxB0[ 0 ] ), \
+		kaxB1, sizeof( kaxB1 ) / sizeof( kaxB1[ 0 ] ), \
+		kaxB2, sizeof( kaxB2 ) / sizeof( kaxB2[ 0 ] ), \
+		kaxB3, sizeof( kaxB3 ) / sizeof( kaxB3[ 0 ] ), \
+		kaxB4, sizeof( kaxB4 ) / sizeof( kaxB4[ 0 ] ), \
+		0, 0, \
+		kaxR0, sizeof( kaxR0 ) / sizeof( kaxR0[ 0 ] ), \
+		kaxR1, sizeof( kaxR1 ) / sizeof( kaxR1[ 0 ] ), \
+		kaxR2, sizeof( kaxR2 ) / sizeof( kaxR2[ 0 ] ), \
+		kaxR3, sizeof( kaxR3 ) / sizeof( kaxR3[ 0 ] ), \
+		kaxR4, sizeof( kaxR4 ) / sizeof( kaxR4[ 0 ] ), \
+		0, 0 )
 
 #define INITIALISE_TERMS_LBR5() \
 	VSOP87OrbitalEphemeris(								\
@@ -93,18 +133,18 @@ public:
 			static_cast< double >( xJDT - 2451545.0 ) / 365250.0 );
 	}
 
-	EphemerisVector4 Evaluate( const double dTCenturies ) const
+	EphemerisVector4 Evaluate( const double dTM ) const
 	{
-		const double dLatitude = EvaluateLatitude( dTCenturies );
-		const double dLongitude = EvaluateLongitude( dTCenturies );
-		const double dRadius = EvaluateRadius( dTCenturies );
+		const double dLatitude = EvaluateLatitude( dTM );
+		const double dLongitude = EvaluateLongitude( dTM );
+		const double dRadius = EvaluateRadius( dTM );
 
 		return PositionFromLatLonRad( dLatitude, dLongitude, dRadius );
 	}
 
 private:
 
-	double EvaluateLongitude( const double dTCenturies ) const
+	double EvaluateLongitude( const double dTM ) const
 	{
 		return EvaluateSeries(
 			mpxL0, miL0Count,
@@ -113,10 +153,10 @@ private:
 			mpxL3, miL3Count,
 			mpxL4, miL4Count,
 			mpxL5, miL5Count,
-			dTCenturies );
+			dTM );
 	}
 
-	double EvaluateLatitude( const double dTCenturies ) const
+	double EvaluateLatitude( const double dTM ) const
 	{
 		return EvaluateSeries(
 			mpxB0, miB0Count,
@@ -125,10 +165,10 @@ private:
 			mpxB3, miB3Count,
 			mpxB4, miB4Count,
 			mpxB5, miB5Count,
-			dTCenturies );
+			dTM );
 	}
 
-	double EvaluateRadius( const double dTCenturies ) const
+	double EvaluateRadius( const double dTM ) const
 	{
 		return EvaluateSeries(
 			mpxR0, miR0Count,
@@ -137,7 +177,7 @@ private:
 			mpxR3, miR3Count,
 			mpxR4, miR4Count,
 			mpxR5, miR5Count,
-			dTCenturies );
+			dTM );
 	}
 
 	static double EvaluateSeries(
@@ -147,7 +187,7 @@ private:
 		const VSOP87Term* const pxX3, const int iX3Count,
 		const VSOP87Term* const pxX4, const int iX4Count,
 		const VSOP87Term* const pxX5, const int iX5Count,
-		const double dTCenturies )
+		const double dTM )
 	{
 		const VSOP87Term* const apxX[] = { pxX0, pxX1, pxX2, pxX3, pxX4, pxX5 };
 		const int aiTermCounts[] = { iX0Count, iX1Count, iX2Count, iX3Count, iX4Count, iX5Count };
@@ -159,16 +199,16 @@ private:
 				for( int j = 0; j < aiTermCounts[ i ]; ++j )
 				{
 					const VSOP87Term& xTerm = apxX[ i ][ j ];
-					dResults[ i ] += xTerm.mdA * cos( xTerm.mdB + xTerm.mdC * dTCenturies );
+					dResults[ i ] += xTerm.mdA * cos( xTerm.mdB + xTerm.mdC * dTM );
 				}
 			}
 		}
 
-		return ( ( ( ( ( dResults[ 5 ] * dTCenturies
-			+ dResults[ 4 ] ) * dTCenturies
-			+ dResults[ 3 ] ) * dTCenturies
-			+ dResults[ 2 ] ) * dTCenturies
-			+ dResults[ 1 ] ) * dTCenturies + dResults[ 0 ] )
+		return ( ( ( ( ( dResults[ 5 ] * dTM
+			+ dResults[ 4 ] ) * dTM
+			+ dResults[ 3 ] ) * dTM
+			+ dResults[ 2 ] ) * dTM
+			+ dResults[ 1 ] ) * dTM + dResults[ 0 ] )
 				/ 100000000.0;
 	}
 
