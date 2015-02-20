@@ -453,7 +453,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxR4[] =
 	{ 10, 1.91, 56.62 }
 };
 
-UranusVSOP87OrbitalEphemeris::UranusVSOP87OrbitalEphemeris( )
+UranusVSOP87OrbitalEphemeris::UranusVSOP87OrbitalEphemeris()
 : INITIALISE_TERMS_LBR4()
 {
 
