@@ -15,7 +15,7 @@
 #define EphemerisVector4 DPVector4
 #define EphemerisFloat double
 
-template< class Implementation >
+template< class Implementation, const bool bCorrectForLightTime = true >
 class OrbitalEphemeris
 {
 
@@ -26,7 +26,14 @@ public:
     // derived quantities from those exposed by Implementation
     EphemerisVector4 CalculatePosition( const EphemerisVector4& xObserver ) const
     {
-        return static_cast< const Implementation* >( this )->EvaluateEphemeris( xObserver[ 3 ] );
+        if( bCorrectForLightTime )
+        {
+            return CalculatePositionCorrectedForLightTime( xObserver );
+        }
+        else
+        {
+            return static_cast< const Implementation* >( this )->EvaluateEphemeris( xObserver[ 3 ] );
+        }
     }
     
     double GetPeriapsis( const EphemerisVector4& xObserver ) const
@@ -86,6 +93,34 @@ protected:
     }
 
 private:
+
+    static EphemerisFloat TimeFromDistance( const EphemerisFloat& xDistance )
+    {
+        static const double kdLightSpeedMS = 299792458.0;
+        static const double kdAUM = 149597870700.0;
+        static const double kdDayS = 86400.0;
+
+        const double kdConversionFactor = kdAUM / ( 299792458.0 * kdDayS );
+
+        return xDistance * static_cast< EphemerisFloat >( kdConversionFactor );
+    }
+
+    EphemerisVector4 CalculatePositionCorrectedForLightTime( const EphemerisVector4& xObserver ) const
+    {
+        EphemerisVector4 xGuess = static_cast< const Implementation* >( this )->EvaluateEphemeris( xObserver[ 3 ] );
+        // take distance and convert to time...
+        
+        // SE - TODO: something to iterate until a desired precision is reached
+        for( int i = 0; i < 2; ++i )
+        {
+            const EphemerisFloat xDistance = ( xObserver.xyz() - xGuess.xyz() ).Magnitude();
+            const EphemerisFloat xTimeDifference = TimeFromDistance( xDistance );
+            const EphemerisFloat xJDT = xObserver[ 3 ] - xTimeDifference;
+            xGuess = static_cast< const Implementation* >( this )->EvaluateEphemeris( xJDT );
+        }
+
+        return xGuess;
+    }
 
     HIDE_BUILT_IN_COPIES( OrbitalEphemeris );
 
