@@ -7,7 +7,7 @@ const KeplerElements EarthSchlyterOrbitalEphemeris::kxBaseElements =
     0.0,
     0.0,
     Maths::Deg2Rad( 282.9404 ),
-    1.0,
+    -1.0, // SE - NOTE: these elements are actually for the sun from earth, so this is -1AU (!)
     0.016709,
     Maths::Deg2Rad( 356.0470 ),
     Maths::Deg2Rad( 0.9856002585 ),
