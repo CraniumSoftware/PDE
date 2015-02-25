@@ -45,7 +45,7 @@
 	static const VSOP87Term kaxR5[]
 
 #define INITIALISE_TERMS_LBR4() \
-	VSOP87OrbitalEphemeris( \
+	VSOP87DOrbitalEphemeris( \
 		kaxL0, sizeof( kaxL0 ) / sizeof( kaxL0[ 0 ] ), \
 		kaxL1, sizeof( kaxL1 ) / sizeof( kaxL1[ 0 ] ), \
 		kaxL2, sizeof( kaxL2 ) / sizeof( kaxL2[ 0 ] ), \
@@ -66,7 +66,7 @@
 		0, 0 )
 
 #define INITIALISE_TERMS_LBR5() \
-	VSOP87OrbitalEphemeris(								\
+	VSOP87DOrbitalEphemeris(								\
 		kaxL0, sizeof( kaxL0 ) / sizeof( kaxL0[ 0 ] ),	\
 		kaxL1, sizeof( kaxL1 ) / sizeof( kaxL1[ 0 ] ),	\
 		kaxL2, sizeof( kaxL2 ) / sizeof( kaxL2[ 0 ] ),	\
@@ -93,13 +93,13 @@ struct VSOP87Term
 	double mdC;
 };
 
-class VSOP87OrbitalEphemeris
-: public OrbitalEphemeris< VSOP87OrbitalEphemeris >
+class VSOP87DOrbitalEphemeris
+: public OrbitalEphemeris< VSOP87DOrbitalEphemeris >
 {
 
 public:
 
-	VSOP87OrbitalEphemeris(
+	VSOP87DOrbitalEphemeris(
 		const VSOP87Term* const pxL0, const int iL0Count,
 		const VSOP87Term* const pxL1, const int iL1Count, 
 		const VSOP87Term* const pxL2, const int iL2Count, 
@@ -139,6 +139,7 @@ public:
 		const double dLongitude = EvaluateLongitude( dTM );
 		const double dRadius = EvaluateRadius( dTM );
 
+        // SE - TODO: correct for not being barycentric
 		return PositionFromLatLonRad( dLatitude, dLongitude, dRadius );
 	}
 

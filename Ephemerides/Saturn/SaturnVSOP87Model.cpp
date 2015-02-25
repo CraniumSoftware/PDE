@@ -1,6 +1,8 @@
 #include "SaturnVSOP87Model.h"
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL0[] =
+// truncated elements set from Astronomical Algorithms by Jean Meeus
+
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxL0[] =
 {
 	{ 87401354, 0, 0 },
 	{ 11107660, 3.96205090, 213.29909544 },
@@ -94,7 +96,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL0[] =
 	{ 101, 4.965, 269.921 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL1[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxL1[] =
 {
 	{ 21354295596.0, 0, 0 },
 	{ 1296855, 1.8282054, 213.2990954 },
@@ -177,7 +179,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL1[] =
 	{ 26, 4.51, 340.77 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL2[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxL2[] =
 {
 	{ 116441, 1.179879, 7.113547 },
 	{ 91921, 0.07425, 213.29910 },
@@ -244,7 +246,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL2[] =
 	{ 6, 5.93, 405.26 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL3[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxL3[] =
 {
 	{ 16039, 5.73945, 7.11355 },
 	{ 4250, 4.5854, 213.2991 },
@@ -296,7 +298,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL3[] =
 	{ 2, 3.07, 654.12 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL4[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxL4[] =
 {
 	{ 1662, 3.9983, 7.1135 },
 	{ 257, 2.984, 220.413 },
@@ -327,7 +329,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL4[] =
 	{ 1, 1.55, 191.96 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL5[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxL5[] =
 {
 	{ 124, 2.259, 7.114 },
 	{ 34, 2.16, 14.23 },
@@ -343,7 +345,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxL5[] =
 	{ 1, 3.14, 0 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxB0[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxB0[] =
 {
 	{ 4330678, 3.6028443, 213.2990954 },
 	{ 240348, 2.852385, 426.598191 },
@@ -381,7 +383,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxB0[] =
 	{ 114, 0.963, 210.118 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxB1[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxB1[] =
 {
 	{ 397555, 5.332900, 213.299095 },
 	{ 49479, 3.14159, 0 },
@@ -417,7 +419,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxB1[] =
 	{ 27, 4.44, 11.05 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxB2[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxB2[] =
 {
 	{ 20630, 0.50482, 213.29910 },
 	{ 3720, 3.9983, 206.1855 },
@@ -450,7 +452,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxB2[] =
 	{ 6, 3.61, 860.31 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxB3[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxB3[] =
 {
 	{ 666, 1.990, 213.299 },
 	{ 632, 5.698, 206.186 },
@@ -475,7 +477,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxB3[] =
 	{ 2, 3.72, 216.48 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxB4[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxB4[] =
 {
 	{ 80, 1.12, 206.19 },
 	{ 32, 3.12, 213.30 },
@@ -491,13 +493,13 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxB4[] =
 	{ 1, 6.18, 639.90 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxB5[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxB5[] =
 {
 	{ 8, 2.82, 206.19 },
 	{ 1, 0.51, 220.41 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR0[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxR0[] =
 {
 	{ 955758136, 0, 0 },
 	{ 52921382, 2.39226220, 213.29909544 },
@@ -545,7 +547,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR0[] =
 	{ 2024, 5.0541, 11.0457 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR1[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxR1[] =
 {
 	{ 6182981, 0.2584352, 213.2990954 },
 	{ 506578, 0.711147, 206.185548 },
@@ -587,7 +589,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR1[] =
 	{ 503, 2.130, 3.932 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR2[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxR2[] =
 {
 	{ 436902, 4.786717, 213.299095 },
 	{ 71923, 2.50070, 206.18555 },
@@ -623,7 +625,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR2[] =
 	{ 132, 5.933, 309.278 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR3[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxR3[] =
 {
 	{ 20315, 3.02187, 213.29910 },
 	{ 8924, 3.1914, 220.4126 },
@@ -655,7 +657,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR3[] =
 	{ 32, 4.01, 21.34 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR4[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxR4[] =
 {
 	{ 1202, 1.4150, 220.4126 },
 	{ 708, 1.162, 213.299 },
@@ -682,7 +684,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR4[] =
 	{ 8, 1.27, 234.64 }
 };
 
-const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR5[] =
+const VSOP87Term SaturnVSOP87DOrbitalEphemeris::kaxR5[] =
 {
 	{ 129, 5.913, 220.413 },
 	{ 32, 0.69, 7.11 },
@@ -704,7 +706,7 @@ const VSOP87Term SaturnVSOP87OrbitalEphemeris::kaxR5[] =
 	{ 2, 0.56, 117.32 }
 };
 
-SaturnVSOP87OrbitalEphemeris::SaturnVSOP87OrbitalEphemeris()
+SaturnVSOP87DOrbitalEphemeris::SaturnVSOP87DOrbitalEphemeris()
 : INITIALISE_TERMS_LBR5()
 {
 

@@ -1,6 +1,8 @@
 #include "UranusVSOP87Model.h"
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxL0[] =
+// truncated elements set from Astronomical Algorithms by Jean Meeus
+
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxL0[] =
 {
 	{ 548129294, 0, 0 },
 	{ 9260408, 0.8910642, 74.7815986 },
@@ -95,7 +97,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxL0[] =
 	{ 103, 0.681, 14.978 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxL1[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxL1[] =
 {
 	{ 7502543122.0, 0, 0 },
 	{ 154458, 5.242017, 74.781599 },
@@ -156,7 +158,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxL1[] =
 	{ 25, 5.74, 380.13 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxL2[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxL2[] =
 {
 	{ 53033, 0, 0 },
 	{ 2358, 2.2601, 74.7816 },
@@ -195,7 +197,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxL2[] =
 	{ 6, 5.73, 462.02 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxL3[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxL3[] =
 {
 	{ 121, 0.024, 74.782 },
 	{ 68, 4.12, 3.93 },
@@ -217,7 +219,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxL3[] =
 	{ 2, 5.66, 9.56 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxL4[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxL4[] =
 {
 	{ 114, 3.142, 0 },
 	{ 6, 4.58, 74.78 },
@@ -225,7 +227,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxL4[] =
 	{ 1, 3.42, 56.62 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxB0[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxB0[] =
 {
 	{ 1346278, 2.6187781, 74.7815986 },
 	{ 62341, 5.08111, 149.56320 },
@@ -257,7 +259,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxB0[] =
 	{ 102, 2.619, 78.714 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxB1[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxB1[] =
 {
 	{ 206366, 4.123943, 74.781599 },
 	{ 8563, 0.3382, 149.5632 },
@@ -281,7 +283,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxB1[] =
 	{ 26, 0.42, 380.13 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxB2[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxB2[] =
 {
 	{ 9212, 5.8004, 74.7816 },
 	{ 557, 0, 0 },
@@ -296,7 +298,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxB2[] =
 	{ 8, 6.27, 78.71 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxB3[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxB3[] =
 {
 	{ 268, 1.251, 74.782 },
 	{ 11, 3.14, 0 },
@@ -304,12 +306,12 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxB3[] =
 	{ 3, 5.78, 73.30 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxB4[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxB4[] =
 {
 	{ 6, 2.85, 74.78 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxR0[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxR0[] =
 {
 	{ 1921264848, 0, 0 },
 	{ 88784984, 5.60377527, 74.78159857 },
@@ -372,7 +374,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxR0[] =
 	{ 2183, 2.9404, 305.3462 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxR1[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxR1[] =
 {
 	{ 1479896, 3.6720571, 74.7815986 },
 	{ 71212, 6.22601, 63.73590 },
@@ -411,7 +413,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxR1[] =
 	{ 528, 5.151, 2.969 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxR2[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxR2[] =
 {
 	{ 22440, 0.69953, 74.78160 },
 	{ 4727, 1.6990, 63.7359 },
@@ -433,7 +435,7 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxR2[] =
 	{ 129, 2.081, 3.181 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxR3[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxR3[] =
 {
 	{ 1164, 4.7345, 74.7816 },
 	{ 212, 3.343, 63.736 },
@@ -447,13 +449,13 @@ const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxR3[] =
 	{ 32, 3.60, 131.40 }
 };
 
-const VSOP87Term UranusVSOP87OrbitalEphemeris::kaxR4[] =
+const VSOP87Term UranusVSOP87DOrbitalEphemeris::kaxR4[] =
 {
 	{ 53, 3.01, 74.78 },
 	{ 10, 1.91, 56.62 }
 };
 
-UranusVSOP87OrbitalEphemeris::UranusVSOP87OrbitalEphemeris()
+UranusVSOP87DOrbitalEphemeris::UranusVSOP87DOrbitalEphemeris()
 : INITIALISE_TERMS_LBR4()
 {
 

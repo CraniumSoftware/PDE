@@ -3,13 +3,13 @@
 
 #include "Ephemerides/VSOP87Orbit.h" 
 
-class JupiterVSOP87OrbitalEphemeris
-: public VSOP87OrbitalEphemeris
+class JupiterVSOP87DOrbitalEphemeris
+: public VSOP87DOrbitalEphemeris
 {
 
 public:
 
-	JupiterVSOP87OrbitalEphemeris();
+	JupiterVSOP87DOrbitalEphemeris();
 
 private:
 

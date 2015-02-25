@@ -1,6 +1,8 @@
 #include "JupiterVSOP87Model.h"
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL0[] =
+// truncated elements set from Astronomical Algorithms by Jean Meeus
+
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxL0[] =
 {
 	{ 59954691, 0, 0 },
 	{ 9695899, 5.0619179, 529.6909651 },
@@ -68,7 +70,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL0[] =
 	{ 106, 4.554, 526.510 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL1[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxL1[] =
 {
 	{ 52993480757.0, 0, 0 },
 	{ 489741, 4.220667, 529.690965 },
@@ -133,7 +135,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL1[] =
 	{ 25, 1.61, 831.86 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL2[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxL2[] =
 {
 	{ 47234, 4.32148, 7.11355 },
 	{ 38966, 0, 0 },
@@ -194,7 +196,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL2[] =
 	{ 6, 0.50, 949.18 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL3[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxL3[] =
 {
 	{ 6502, 2.5986, 7.1135 },
 	{ 1357, 1.3464, 529.6910 },
@@ -237,7 +239,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL3[] =
 	{ 2, 2.36, 942.06 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL4[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxL4[] =
 {
 	{ 669, 0.853, 7.114 },
 	{ 114, 3.142, 0 },
@@ -260,7 +262,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL4[] =
 	{ 1, 1.29, 1589.07 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL5[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxL5[] =
 {
 	{ 50, 5.26, 7.11 },
 	{ 16, 5.25, 14.23 },
@@ -269,7 +271,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxL5[] =
 	{ 1, 3.14, 0 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxB0[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxB0[] =
 {
 	{ 2268616, 3.5585261, 529.6909651 },
 	{ 110090, 0, 0 },
@@ -299,7 +301,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxB0[] =
 	{ 102, 3.153, 1581.959 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxB1[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxB1[] =
 {
 	{ 177352, 5.701665, 529.690965 },
 	{ 3230, 5.7794, 1059.3819 },
@@ -325,7 +327,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxB1[] =
 	{ 32, 4.92, 1581.96 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxB2[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxB2[] =
 {
 	{ 8094, 1.4632, 529.6910 },
 	{ 813, 3.1416, 0 },
@@ -343,7 +345,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxB2[] =
 	{ 6, 6.21, 1045.15 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxB3[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxB3[] =
 {
 	{ 252, 3.381, 529.691 },
 	{ 122, 2.733, 522.577 },
@@ -356,7 +358,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxB3[] =
 	{ 3, 3.14, 0 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxB4[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxB4[] =
 {
 	{ 15, 4.53, 522.58 },
 	{ 5, 4.47, 529.69 },
@@ -366,12 +368,12 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxB4[] =
 	{ 1, 4.20, 1052.27 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxB5[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxB5[] =
 {
 	{ 1, 0.09, 522.58 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR0[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxR0[] =
 {
 	{ 520887429, 0, 0 },
 	{ 25209327, 3.49108640, 529.69096509 },
@@ -421,7 +423,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR0[] =
 	{ 542, 0.284, 525.759 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR1[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxR1[] =
 {
 	{ 1271802, 2.6493751, 529.6909651 },
 	{ 61662, 3.00076, 1059.38193 },
@@ -468,7 +470,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR1[] =
 	{ 132, 4.512, 525.759 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR2[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxR2[] =
 {
 	{ 79645, 1.35866, 529.69097 },
 	{ 8252, 5.7777, 522.5774 },
@@ -508,7 +510,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR2[] =
 	{ 40, 5.95, 95.98 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR3[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxR3[] =
 {
 	{ 3519, 6.0580, 529.6910 },
 	{ 1073, 1.6732, 536.8045 },
@@ -540,7 +542,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR3[] =
 	{ 9, 3.45, 838.97 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR4[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxR4[] =
 {
 	{ 129, 0.084, 536.805 },
 	{ 113, 4.249, 529.691 },
@@ -559,7 +561,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR4[] =
 	{ 3, 2.90, 426.60 }
 };
 
-const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR5[] =
+const VSOP87Term JupiterVSOP87DOrbitalEphemeris::kaxR5[] =
 {
 	{ 11, 4.75, 536.80 },
 	{ 4, 5.92, 522.58 },
@@ -570,7 +572,7 @@ const VSOP87Term JupiterVSOP87OrbitalEphemeris::kaxR5[] =
 	{ 2, 5.49, 1066.50 }
 };
 
-JupiterVSOP87OrbitalEphemeris::JupiterVSOP87OrbitalEphemeris()
+JupiterVSOP87DOrbitalEphemeris::JupiterVSOP87DOrbitalEphemeris()
 : INITIALISE_TERMS_LBR5()
 {
 
