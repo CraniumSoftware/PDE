@@ -124,7 +124,7 @@ public:
         maComponents[ 3 ] = w;
     }
 
-    DPVector4( const Vector3& v, const double w = 1.0 )
+    DPVector4( const DPVector3& v, const double w = 1.0 )
     {
         maComponents[ 0 ] = v[ 0 ];
         maComponents[ 1 ] = v[ 1 ];
@@ -132,7 +132,7 @@ public:
         maComponents[ 3 ] = w;
     }
 
-    DPVector4( const Vector2& v, const double z = 0.0, const double w = 1.0 )
+    DPVector4( const DPVector2& v, const double z = 0.0, const double w = 1.0 )
     {
         maComponents[ 0 ] = v[ 0 ];
         maComponents[ 1 ] = v[ 1 ];
