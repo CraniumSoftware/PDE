@@ -32,8 +32,13 @@ public:
         }
         else
         {
-            return static_cast< const Implementation* >( this )->EvaluateEphemeris( xObserver[ 3 ] );
+            return CalculateNoLightTimePosition( xObserver );
         }
+    }
+
+    EphemerisVector4 CalculateNoLightTimePosition( const EphemerisVector4& xObserver ) const
+    {
+        return static_cast< const Implementation* >( this )->EvaluateEphemeris( xObserver[ 3 ] );
     }
     
     double GetPeriapsis( const EphemerisVector4& xObserver ) const

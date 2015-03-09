@@ -17,4 +17,18 @@ private:
 
 };
 
+class JupiterVSOP87EOrbitalEphemeris
+: public VSOP87EOrbitalEphemeris
+{
+
+public:
+
+    JupiterVSOP87EOrbitalEphemeris();
+
+private:
+
+    DECLARE_TERMS_XYZ5;
+
+};
+
 #endif
