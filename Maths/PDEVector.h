@@ -1,13 +1,13 @@
-// Copyright (c) 2013-2014 Cranium Software
+// Copyright (c) 2013-2015 Cranium Software
 
 // ... but permission given for use in this project in accordance
 // with the license of this project
 
-#ifndef ENGINE_VECTOR_H
-#define ENGINE_VECTOR_H
+#ifndef PDE_VECTOR_H
+#define PDE_VECTOR_H
 
-#include "Maths.h"
-#include "MathsOperator.h"
+#include "PDEMaths.h"
+#include "PDEMathsOperator.h"
 
 #if COMPILER_MS
 // SE: this is desirable - so much inlining happened that something became a constant :)
@@ -15,6 +15,9 @@
 #endif
 
 // SE - TODO: alignment and faster copies...
+
+namespace PDE
+{
 
 template< class BaseType, int iComponentCount >
 class VectorBase
@@ -137,11 +140,11 @@ public:
     }
     
     BaseType MagnitudeSquared() const { return this->Dot( *this ); }
-    BaseType Magnitude() const { return Maths::SquareRoot( MagnitudeSquared() ); }
+    BaseType Magnitude() const { return PDE::SquareRoot( MagnitudeSquared() ); }
 
 	VectorBase Normalised() const { return *this / Magnitude(); }
-    VectorBase NormalisedFast() const { return *this * Maths::FastInvSqrt( MagnitudeSquared() ); }
-    VectorBase NormalisedFaster() const { return *this * Maths::FasterInvSqrt( MagnitudeSquared() ); }
+    VectorBase NormalisedFast() const { return *this * PDE::FastInvSqrt( MagnitudeSquared() ); }
+    VectorBase NormalisedFaster() const { return *this * PDE::FasterInvSqrt( MagnitudeSquared() ); }
 
     FORCE_INLINE VectorBase< BaseType, 3 >& xyz() { return *reinterpret_cast< VectorBase< BaseType, 3 >* >( this ); }
 	FORCE_INLINE const VectorBase< BaseType, 3 >& xyz() const { return *reinterpret_cast< const VectorBase< BaseType, 3 >* >( this ); }
@@ -228,8 +231,8 @@ public:
         maComponents[ 1 ] = xOther[ 1 ];
     }
     
-    float Max() const { return Maths::Max( maComponents[ 0 ], maComponents[ 1 ] ); }
-    float Min() const { return Maths::Min( maComponents[ 0 ], maComponents[ 1 ] ); }
+    float Max() const { return PDE::Max( maComponents[ 0 ], maComponents[ 1 ] ); }
+    float Min() const { return PDE::Min( maComponents[ 0 ], maComponents[ 1 ] ); }
 
 	Vector2 xx() const { return Vector2( maComponents[ 0 ] ); }
 	Vector2 yy() const { return Vector2( maComponents[ 1 ] ); }
@@ -288,15 +291,15 @@ public:
 	static Vector3 RandomDirection();
 	static Vector3 RandomNormalisedDirection();
 
-	float Max() const { return Maths::Max( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
-	float Min() const { return Maths::Min( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
+	float Max() const { return PDE::Max( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
+	float Min() const { return PDE::Min( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
 
     static Vector3 FromEllipsoid( const float fLon, const float fLat, float fPolar, float fEquatorial )
     {
         return Vector3(
-                       fEquatorial * Maths::Sin( fLat ) * Maths::Cos( fLon ),
-                       fEquatorial * Maths::Sin( fLat ) * Maths::Sin( fLon ),
-                       fPolar * Maths::Cos( fLat )
+                       fEquatorial * PDE::Sin( fLat ) * PDE::Cos( fLon ),
+                       fEquatorial * PDE::Sin( fLat ) * PDE::Sin( fLon ),
+                       fPolar * PDE::Cos( fLat )
         );
     }
     
@@ -351,8 +354,8 @@ public:
         maComponents[ 3 ] = w;
     }
 
-    float Max() const { return Maths::Max( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ], maComponents[ 3 ] ); }
-    float Min() const { return Maths::Min( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ], maComponents[ 3 ] ); }
+    float Max() const { return PDE::Max( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ], maComponents[ 3 ] ); }
+    float Min() const { return PDE::Min( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ], maComponents[ 3 ] ); }
     
     unsigned int RGBA() const
     {
@@ -372,6 +375,8 @@ public:
 	//USE_BASE_OPERATORS( Base )
     
 };
+
+}
 
 #endif
 

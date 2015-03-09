@@ -1,22 +1,22 @@
-// Copyright (c) 2013 Cranium Software
+// Copyright (c) 2013, 2015 Cranium Software
 
 // ... but permission given for use in this project in accordance
 // with the license of this project
 
-#include "Maths.h"
+#include "PDEMaths.h"
 
-#include "Maths/Matrix.h"
+#include "PDEMatrix.h"
 //#include "Maths/NaNCheck.h"
 //#include "Maths/Random.h"
 //#include "Maths/Ray.h"
 //#include "Maths/Sphere.h"
 //#include "Maths/Quaternion.h"
-#include "Maths/Vector.h"
+#include "PDEVector.h"
 
 #include "Debug/Trace.h"
 //#include "UnitTest/UnitTest.h"
 
-namespace Maths
+namespace PDE
 {
 
 unsigned int suLastSeed = 0;

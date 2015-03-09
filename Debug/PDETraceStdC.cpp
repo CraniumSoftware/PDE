@@ -1,9 +1,9 @@
-// Copyright (c) 2013 Cranium Software
+// Copyright (c) 2013, 2015 Cranium Software
 
 // ... but permission given for use in this project in accordance
 // with the license of this project
 
-#include "Trace.h"
+#include "PDETrace.h"
 
 #include "Compiler/Compiler.h"
 
@@ -15,7 +15,7 @@
 
 #if !ANDROID
 
-extern "C" void traceImplementation( const int iLevel, const char* const szTag, const char* const szFormatString, ... )
+extern "C" void PDETraceImplementation( const int iLevel, const char* const szTag, const char* const szFormatString, ... )
 {
     UNUSED( iLevel );
     static char szBuffer[ 1024 ];

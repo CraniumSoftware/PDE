@@ -1,10 +1,10 @@
-// Copyright (c) 2013 Cranium Software
+// Copyright (c) 2013, 2015 Cranium Software
 
 // ... but permission given for use in this project in accordance
 // with the license of this project
 
-#ifndef ENGINE_MATRIX_H
-#define ENGINE_MATRIX_H
+#ifndef PDE_MATRIX_H
+#define PDE_MATRIX_H
 
 // SE - trust the compiler to decide to not inline things we mark FORCE_INLINE because the template depth here
 // is potentially much deeper than it looks at first glance and we want any old components to work...
@@ -13,8 +13,11 @@
 #pragma warning( disable : 4714 )
 #endif
 
-#include "Maths.h"
-#include "Vector.h"
+#include "PDEMaths.h"
+#include "PDEVector.h"
+
+namespace PDE
+{
 
 template< class BaseType, int iComponentCount >
 class MatrixBase
@@ -310,7 +313,7 @@ public:
 
 	static FORCE_INLINE Matrix4 Perspective( const ComponentType& xFOVY, const ComponentType& xAspect, const ComponentType& xNear, const ComponentType& xFar )
 	{    
-		const ComponentType xY = xNear * Maths::Tan( xFOVY * static_cast< ComponentType >( Maths::PiDouble / 360.0 ) );
+        const ComponentType xY = xNear * PDE::Tan( xFOVY * static_cast< ComponentType >( PDE::PiDouble / 360.0 ) );
 		const ComponentType xX = xY * xAspect;
     
 		return Perspective( -xX, xX, -xY, xY, xNear, xFar );
@@ -384,8 +387,8 @@ public:
         const float fXY = xAxis[ 0 ] * xAxis[ 1 ];
         const float fYZ = xAxis[ 1 ] * xAxis[ 2 ];
         const float fZX = xAxis[ 2 ] * xAxis[ 0 ];
-        const float fC = Maths::Cos( fAngle );
-        const float fS = Maths::Sin( fAngle );
+        const float fC = PDE::Cos( fAngle );
+        const float fS = PDE::Sin( fAngle );
 
         // SE - TODO: test - nicked from GLToy...
         return Matrix4(
@@ -553,5 +556,7 @@ public:
         return ( fDet == 0.0f ) ? Matrix4::Zero : ( xRet / fDet );
     }
 };
+
+}
 
 #endif

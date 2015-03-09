@@ -1,4 +1,4 @@
-// Copyright (c) 2013, 2014 Cranium Software
+// Copyright (c) 2013-2015 Cranium Software
 
 // ... but permission given for use in this project in accordance
 // with the license of this project
@@ -20,7 +20,7 @@
 #include <tr1/type_traits>
 #endif
 
-namespace Maths
+namespace PDE
 {
 
 static const float PiFloat = 3.1415926535897932384f;
