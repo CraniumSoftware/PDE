@@ -73,7 +73,7 @@ public:
 #if USE_SCHLYTER_MATHS
         // SE - NOTE: for clarity map everything to the variables used by Paul Schlyter
         const EphemerisFloat r = xPositionInPlane.xy().Magnitude();
-        const EphemerisFloat v = Maths::Atan2( xPositionInPlane.y(), xPositionInPlane.x() );
+        const EphemerisFloat v = PDE::Atan2( xPositionInPlane.y(), xPositionInPlane.x() );
         const EphemerisFloat N = dLongitudeOfAscendingNode;
         const EphemerisFloat i = dInclination;
         const EphemerisFloat w = dArgumentOfPerifocus;
@@ -84,12 +84,12 @@ public:
             xPositionInPlane.w() );
 #else
         // rotate into the space described by the remaining orbital elements
-        const double dCosW = Maths::Cos( dArgumentOfPerifocus );
-        const double dSinW = Maths::Sin( dArgumentOfPerifocus );
-        const double dCosI = Maths::Cos( dInclination );
-        const double dSinI = Maths::Sin( dInclination );
-        const double dCosN = Maths::Cos( dLongitudeOfAscendingNode );
-        const double dSinN = Maths::Sin( dLongitudeOfAscendingNode );
+        const double dCosW = PDE::Cos( dArgumentOfPerifocus );
+        const double dSinW = PDE::Sin( dArgumentOfPerifocus );
+        const double dCosI = PDE::Cos( dInclination );
+        const double dSinI = PDE::Sin( dInclination );
+        const double dCosN = PDE::Cos( dLongitudeOfAscendingNode );
+        const double dSinN = PDE::Sin( dLongitudeOfAscendingNode );
 
         // rotate the periapse to the right place relative to the nodes
         const EphemerisVector4 xRotatedToPeriapse(
@@ -121,10 +121,10 @@ private:
         //
         // this simple numerical approach is very stable, if a little expensive
         //
-        double dEccentricAnomaly = dMeanAnomaly + 0.85 * dEccentricity * Maths::Sign( Maths::Sin( dMeanAnomaly ) );
+        double dEccentricAnomaly = dMeanAnomaly + 0.85 * dEccentricity * PDE::Sign( PDE::Sin( dMeanAnomaly ) );
         for( int i = 0; i < Iterations; ++i )
         {
-            dEccentricAnomaly += ( dEccentricity * Maths::Sin( dEccentricAnomaly ) + dMeanAnomaly - dEccentricAnomaly ) / ( 1.0 - dEccentricity * Maths::Cos( dEccentricAnomaly ) );
+            dEccentricAnomaly += ( dEccentricity * PDE::Sin( dEccentricAnomaly ) + dMeanAnomaly - dEccentricAnomaly ) / ( 1.0 - dEccentricity * PDE::Cos( dEccentricAnomaly ) );
         }
 
         return dEccentricAnomaly;
@@ -134,11 +134,11 @@ private:
     {
         return EphemerisVector4(
             ( dEccentricity <= 1.0 )
-            ? ( dSemiMajorAxis * ( Maths::Cos( dParameter ) - dEccentricity ) )
-            : ( -dSemiMajorAxis * ( dEccentricity - Maths::Cosh( dParameter ) ) ),
+            ? ( dSemiMajorAxis * ( PDE::Cos( dParameter ) - dEccentricity ) )
+            : ( -dSemiMajorAxis * ( dEccentricity - PDE::Cosh( dParameter ) ) ),
             ( dEccentricity <= 1.0 )
-            ? ( dSemiMajorAxis * Maths::SquareRoot( 1.0 - dEccentricity * dEccentricity ) * Maths::Sin( dParameter ) )
-            : ( -dSemiMajorAxis * Maths::SquareRoot( dEccentricity * dEccentricity - 1.0 ) * Maths::Sinh( dParameter ) )
+            ? ( dSemiMajorAxis * PDE::SquareRoot( 1.0 - dEccentricity * dEccentricity ) * PDE::Sin( dParameter ) )
+            : ( -dSemiMajorAxis * PDE::SquareRoot( dEccentricity * dEccentricity - 1.0 ) * PDE::Sinh( dParameter ) )
             , 0.0, 0.0 );
     }
 

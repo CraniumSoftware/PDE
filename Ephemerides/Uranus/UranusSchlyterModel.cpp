@@ -8,21 +8,21 @@
 
 const KeplerElements UranusSchlyterOrbitalEphemeris::kxBaseElements =
 {
-    Maths::Deg2Rad( 74.0005 ),
-    Maths::Deg2Rad( 0.7733 ),
-    Maths::Deg2Rad( 96.6612 ),
+    PDE::Deg2Rad( 74.0005 ),
+    PDE::Deg2Rad( 0.7733 ),
+    PDE::Deg2Rad( 96.6612 ),
     19.18171,                               // SE - NOTE: this value is in AU
     0.047318,
-    Maths::Deg2Rad( 142.5905 ),
-    Maths::Deg2Rad( 0.011725806 ),
+    PDE::Deg2Rad( 142.5905 ),
+    PDE::Deg2Rad( 0.011725806 ),
     static_cast< double >( J2000 - 1.5 )    // SE - NOTE: these elements have an epoch of '0' Jan 2000, 1.5 days before J2000.0
 };
 
 const KeplerElements UranusSchlyterOrbitalEphemeris::kxLinearPerturbations =
 {
-    Maths::Deg2Rad( 0.000013978 ),
-    Maths::Deg2Rad( 0.000000019 ),
-    Maths::Deg2Rad( 0.000030565 ),
+    PDE::Deg2Rad( 0.000013978 ),
+    PDE::Deg2Rad( 0.000000019 ),
+    PDE::Deg2Rad( 0.000030565 ),
     0.0000000155,
     0.00000000745,
     0.0,
@@ -39,10 +39,10 @@ EphemerisVector4 UranusSchlyterOrbitalEphemeris::Perturb( const EphemerisVector4
     const double dMeanAnomalySaturn = SaturnSchlyterOrbitalEphemeris::MeanAnomaly( dT );
     const double dMeanAnomalyUranus = MeanAnomaly( dT );
 
-    const double dCorrectedLongitude = dEclipticLongitude + Maths::Deg2Rad(
-        +0.040 * Maths::Sin( dMeanAnomalySaturn - 2.0 * dMeanAnomalyUranus + Maths::Deg2Rad( 6.0 ) )
-        + 0.035 * Maths::Sin( dMeanAnomalySaturn - 3.0 * dMeanAnomalyUranus + Maths::Deg2Rad( 33.0 ) )
-        - 0.015 * Maths::Sin( dMeanAnomalyJupiter - dMeanAnomalyUranus + Maths::Deg2Rad( 20.0 ) ) );
+    const double dCorrectedLongitude = dEclipticLongitude + PDE::Deg2Rad(
+        +0.040 * PDE::Sin( dMeanAnomalySaturn - 2.0 * dMeanAnomalyUranus + PDE::Deg2Rad( 6.0 ) )
+        + 0.035 * PDE::Sin( dMeanAnomalySaturn - 3.0 * dMeanAnomalyUranus + PDE::Deg2Rad( 33.0 ) )
+        - 0.015 * PDE::Sin( dMeanAnomalyJupiter - dMeanAnomalyUranus + PDE::Deg2Rad( 20.0 ) ) );
 
     return PositionFromLatLonRad( CalculateLatitude( xPosition ), dCorrectedLongitude, CalculateRadius( xPosition ) );
 }

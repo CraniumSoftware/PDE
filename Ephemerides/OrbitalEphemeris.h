@@ -65,23 +65,23 @@ protected:
     // helpers for spherical coordinate type stuff
     static double CalculateLongitude( const EphemerisVector4& xLocalCoordinates )
     {
-        return Maths::Atan2(
+        return PDE::Atan2(
             static_cast< double >( xLocalCoordinates.y() ),
             static_cast< double >( xLocalCoordinates.x() ) );
     }
 
     static double CalculateLatitude( const EphemerisVector4& xLocalCoordinates )
     {
-        return Maths::Atan2(
+        return PDE::Atan2(
             static_cast< double >( xLocalCoordinates.z() ),
-            Maths::SquareRoot(
+            PDE::SquareRoot(
                 static_cast< double >( xLocalCoordinates.x() ) * static_cast< double >( xLocalCoordinates.x() )
                 + static_cast< double >( xLocalCoordinates.y() ) * static_cast< double >( xLocalCoordinates.y() ) ) );
     }
 
     static double CalculateRadius( const EphemerisVector4& xLocalCoordinates )
     {
-        return Maths::SquareRoot(
+        return PDE::SquareRoot(
             static_cast< double >( xLocalCoordinates.x() ) * static_cast< double >( xLocalCoordinates.x() )
             + static_cast< double >( xLocalCoordinates.y() ) * static_cast< double >( xLocalCoordinates.y() )
             + static_cast< double >( xLocalCoordinates.z() ) * static_cast< double >( xLocalCoordinates.z() ) );
@@ -89,11 +89,11 @@ protected:
 
     static EphemerisVector4 PositionFromLatLonRad( const double dLatitude, const double dLongitude, const double dRadius )
     {
-        const double dCosLatitude = Maths::Cos( dLatitude );
+        const double dCosLatitude = PDE::Cos( dLatitude );
         return dRadius * EphemerisVector4(
-            dCosLatitude * Maths::Cos( dLongitude ),
-            dCosLatitude * Maths::Sin( dLongitude ),
-            Maths::Sin( dLatitude ),
+            dCosLatitude * PDE::Cos( dLongitude ),
+            dCosLatitude * PDE::Sin( dLongitude ),
+            PDE::Sin( dLatitude ),
             0.0 );
     }
 

@@ -13,7 +13,7 @@
 //#include "Maths/Quaternion.h"
 #include "PDEVector.h"
 
-#include "Debug/Trace.h"
+#include "Debug/PDETrace.h"
 //#include "UnitTest/UnitTest.h"
 
 namespace PDE

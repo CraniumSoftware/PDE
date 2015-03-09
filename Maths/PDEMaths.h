@@ -8,7 +8,7 @@
 
 #include "Compiler/Compiler.h"
 #include "Hardware/CPU.h"
-#include "Debug/Assert.h"
+#include "Debug/PDEAssert.h"
 
 #include <ciso646>
 #include <cmath>
@@ -31,7 +31,7 @@ template< class RealType > \
 static FORCE_INLINE RealType ourName( const RealType x ) \
 { \
     UNUSED( x ); \
-	debugAssert( std::numeric_limits< RealType >::has_quiet_NaN, "Type used for " #ourName " doesn't support quiet NAN" ); \
+	PDE_DEBUG_ASSERT( std::numeric_limits< RealType >::has_quiet_NaN, "Type used for " #ourName " doesn't support quiet NAN" ); \
     return std::numeric_limits< RealType >::has_quiet_NaN ? std::numeric_limits< RealType >::quiet_NaN() : 0; \
 } \
 \
@@ -59,7 +59,7 @@ static FORCE_INLINE RealType ourName( const RealType x, const RealType y ) \
 { \
     UNUSED( x ); \
 	UNUSED( y ); \
-	debugAssert( std::numeric_limits< RealType >::has_quiet_NaN, "Type used for " #ourName " doesn't support quiet NAN" ); \
+	PDE_DEBUG_ASSERT( std::numeric_limits< RealType >::has_quiet_NaN, "Type used for " #ourName " doesn't support quiet NAN" ); \
     return std::numeric_limits< RealType >::has_quiet_NaN ? std::numeric_limits< RealType >::quiet_NaN() : 0; \
 } \
 \
@@ -225,7 +225,7 @@ template < class T > static FORCE_INLINE T Clamp( const T xValue, const T xMin =
 
 static FORCE_INLINE float Wrap( const float fValue, const float fMin = 0.0f, const float fMax = 1.0f )
 {
-	debugAssert( fMax > fMin, "Minimum is greater than maximum!" );
+	PDE_DEBUG_ASSERT( fMax > fMin, "Minimum is greater than maximum!" );
 
 	const float fRange = fMax - fMin;
 	float fReturnValue = ( fValue - fMin ) / fRange;
@@ -238,7 +238,7 @@ static FORCE_INLINE float Wrap( const float fValue, const float fMin = 0.0f, con
 
 static FORCE_INLINE unsigned int Wrap( const unsigned int uValue, const unsigned int uMin = 0, const unsigned int uMax = 1 )
 {
-	debugAssert( uMax > uMin, "Minimum is greater than maximum!" );
+	PDE_DEBUG_ASSERT( uMax > uMin, "Minimum is greater than maximum!" );
 	return uMin + ( ( uValue - uMin ) % ( uMax - uMin ) );
 }
 
