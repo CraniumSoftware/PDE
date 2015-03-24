@@ -40,6 +40,15 @@ protected:
 		return 24.0 / dPeriod;
 	}
 
+	static double DecayRateFromHourPerYear( const double dPeriodHours, const double dHoursPerYear )
+	{
+		const double dNextYearPeriod = dPeriodHours + dHoursPerYear;
+		const double dRate0 = DayRateFromHourPeriod( dPeriodHours );
+		const double dRate1 = DayRateFromHourPeriod( dNextYearPeriod );
+
+		return ( dRate1 - dRate0 ) / 365.25;
+	}
+
 private:
 
 };

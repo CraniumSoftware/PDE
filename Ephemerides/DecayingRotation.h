@@ -7,7 +7,7 @@
 #include "Time/J2000.h"
 
 class LinearDecayingRotation
-: public RotationalEphemeris< SimpleRotation >
+: public RotationalEphemeris< LinearDecayingRotation >
 {
 
 public:
@@ -17,7 +17,7 @@ public:
 		const double dPeriodInHoursJ2000, const double dDecayRatePerYear, const double dMaximumPeriod )
 	: mxRotationAxis( xRotationAxis )
 	, mxZeroLongitudeAtEquator( xZeroLongitudeAtEquatorJ2000 )
-	, mdRate( DayRateFromHourPeriod( dDecayRatePerYear ) )
+	, mdRate( DayRateFromHourPeriod( dPeriodInHoursJ2000 ) )
 	, mdMinimumRate( DayRateFromHourPeriod( dMaximumPeriod ) )
 	, mdDecayRate( DecayRateFromHourPerYear( dPeriodInHoursJ2000, dDecayRatePerYear ) )
 	{
@@ -25,23 +25,21 @@ public:
 
 	PDE::Matrix3 EvaluateOrientation( const double dJDT ) const
 	{
-		const double dT = dJDT - J2000;
-		double dActualRate = mdRate + dT * mdDecayRate;
-		if( dActualRate < mdMinimumRate )
-		{
-			dActualRate = mdMinimumRate;
-		}
-
-		return SimpleRotation::EvaluateOrientation( dJDT, dActualRate, mxRotationAxis, mxZeroLongitudeAtEquator );
+		return EvaluateOrientation( dJDT, mdRate, mdDecayRate, mdMinimumRate, mxRotationAxis, mxZeroLongitudeAtEquator );
 	}
 
-	static double DecayRateFromHourPerYear( const double dPeriodHours, const double dHoursPerYear )
+	static PDE::Matrix3 EvaluateOrientation(
+		const double dJDT, const double dRate, const double dDecayRate,
+		const double dMinimumRate, const PDE::Vector3& xAxis, const PDE::Vector3& xZeroLonLat )
 	{
-		const double dNextYearPeriod = dPeriodHours + dHoursPerYear;
-		const double dRate0 = DayRateFromHourPeriod( dPeriodHours );
-		const double dRate1 = DayRateFromHourPeriod( dNextYearPeriod );
+		const double dT = dJDT - J2000;
+		double dActualRate = dRate + dT * dDecayRate;
+		if( dActualRate < dMinimumRate )
+		{
+			dActualRate = dMinimumRate;
+		}
 
-		return ( dRate1 - dRate0 ) / 365.25;
+		return SimpleRotation::EvaluateOrientation( dJDT, dActualRate, xAxis, xZeroLonLat );
 	}
 
 private:
@@ -51,6 +49,7 @@ private:
 	double mdRate;
 	double mdMinimumRate;
 	double mdDecayRate;
+
 };
 
 #endif
