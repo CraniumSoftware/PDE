@@ -25,10 +25,10 @@ class MatrixBase
 
 public:
 
-	typedef BaseType ComponentType;
+    typedef BaseType ComponentType;
 
     static MatrixBase Identity;
-	static MatrixBase Zero;
+    static MatrixBase Zero;
     
     MatrixBase() {}
     
@@ -58,7 +58,7 @@ public:
         return *this;
     }
 
-	FORCE_INLINE MatrixBase operator -() const
+    FORCE_INLINE MatrixBase operator -() const
     {
         MatrixBase xReturnValue = *this;
         for( int i = 0; i < iComponentCount; ++i )
@@ -100,7 +100,7 @@ public:
 
     FORCE_INLINE MatrixBase operator *( const BaseType& x ) const
     {
-		MatrixBase xResult( *this );
+        MatrixBase xResult( *this );
         for( int i = 0; i < iComponentCount; ++i )
         {
             xResult[ i ] *= x;
@@ -162,11 +162,11 @@ class Matrix3
 
 public:
 
-	typedef MatrixBase< float, 3 > BaseType;
+    typedef MatrixBase< float, 3 > BaseType;
 
-	FORCE_INLINE Matrix3() {}
+    FORCE_INLINE Matrix3() {}
 
-	FORCE_INLINE Matrix3( const MatrixBase& m )
+    FORCE_INLINE Matrix3( const MatrixBase& m )
     {
         for( int i = 0; i < 3; ++i )
         {
@@ -181,7 +181,7 @@ public:
         maComponents[ 2 ] = z;
     }
 
-	FORCE_INLINE Matrix3& operator =( const MatrixBase& m )
+    FORCE_INLINE Matrix3& operator =( const MatrixBase& m )
     {
         for( int i = 0; i < 3; ++i )
         {
@@ -210,9 +210,9 @@ class Matrix4
 
 public:
 
-	typedef MatrixBase< float, 4 > BaseType;
+    typedef MatrixBase< float, 4 > BaseType;
 
-	FORCE_INLINE Matrix4() {}
+    FORCE_INLINE Matrix4() {}
 
     FORCE_INLINE Matrix4( const Vector4& xComponent, const Vector4& yComponent, const Vector4& zComponent, const Vector4& wComponent )
     {
@@ -222,7 +222,7 @@ public:
         maComponents[ 3 ] = wComponent;
     }
     
-	FORCE_INLINE Matrix4( const MatrixBase& m )
+    FORCE_INLINE Matrix4( const MatrixBase& m )
     {
         for( int i = 0; i < 4; ++i )
         {
@@ -230,7 +230,7 @@ public:
         }
     }
 
-	FORCE_INLINE Matrix4& operator =( const MatrixBase& m )
+    FORCE_INLINE Matrix4& operator =( const MatrixBase& m )
     {
         for( int i = 0; i < 4; ++i )
         {
@@ -240,23 +240,23 @@ public:
         return *this;
     }
 
-	FORCE_INLINE Vector3 GetTranslation() const
-	{
-		return maComponents[ 3 ].xyz();
-	}
+    FORCE_INLINE Vector3 GetTranslation() const
+    {
+        return maComponents[ 3 ].xyz();
+    }
 
-	FORCE_INLINE void SetTranslation( const Vector3& xTranslation )
-	{
-		maComponents[ 3 ].xyz() = xTranslation;
-	}
+    FORCE_INLINE void SetTranslation( const Vector3& xTranslation )
+    {
+        maComponents[ 3 ].xyz() = xTranslation;
+    }
 
     FORCE_INLINE void SetUpper3x3( const Matrix3& xRotation )
-	{
-		for( int i = 0; i < 3; ++i )
+    {
+        for( int i = 0; i < 3; ++i )
         {
             maComponents[ i ].xyz() = xRotation[ i ];
         }
-	}
+    }
 
     static FORCE_INLINE Matrix4 Orthographic( const ComponentType& xLeft, const ComponentType& xRight, const ComponentType& xBottom, const ComponentType& xTop, const ComponentType& xNear, const ComponentType& xFar )
     {
@@ -287,44 +287,44 @@ public:
     }
 
 
-	static FORCE_INLINE Matrix4 Perspective( const ComponentType& xLeft, const ComponentType& xRight, const ComponentType& xBottom, const ComponentType& xTop, const ComponentType& xNear, const ComponentType& xFar )
-	{
-		Matrix4 xReturnValue = Zero;
+    static FORCE_INLINE Matrix4 Perspective( const ComponentType& xLeft, const ComponentType& xRight, const ComponentType& xBottom, const ComponentType& xTop, const ComponentType& xNear, const ComponentType& xFar )
+    {
+        Matrix4 xReturnValue = Zero;
 
-		const ComponentType xTemp = static_cast< ComponentType >( 2.0 ) * xNear;
-		const ComponentType xTemp2 = static_cast< ComponentType >( 1.0 ) / ( xRight - xLeft );
-		const ComponentType xTemp3 = static_cast< ComponentType >( 1.0 ) / ( xTop - xBottom );
-		const ComponentType xTemp4 = static_cast< ComponentType >( 1.0 ) / ( xFar - xNear );
+        const ComponentType xTemp = static_cast< ComponentType >( 2.0 ) * xNear;
+        const ComponentType xTemp2 = static_cast< ComponentType >( 1.0 ) / ( xRight - xLeft );
+        const ComponentType xTemp3 = static_cast< ComponentType >( 1.0 ) / ( xTop - xBottom );
+        const ComponentType xTemp4 = static_cast< ComponentType >( 1.0 ) / ( xFar - xNear );
     
-		xReturnValue[ 0 ][ 0 ] = xTemp * xTemp2;
+        xReturnValue[ 0 ][ 0 ] = xTemp * xTemp2;
 
-		xReturnValue[ 1 ][ 1 ] = xTemp * xTemp3;
+        xReturnValue[ 1 ][ 1 ] = xTemp * xTemp3;
 
-		xReturnValue[ 2 ][ 0 ] = ( xRight + xLeft ) * xTemp2;
-		xReturnValue[ 2 ][ 1 ] = ( xTop + xBottom ) * xTemp3;
-		xReturnValue[ 2 ][ 2 ] = -xFar * xTemp4;
-		xReturnValue[ 2 ][ 3 ] = static_cast< ComponentType >( -1.0 );
-		
-		xReturnValue[ 3 ][ 2 ] = -xFar * xNear * xTemp4;
+        xReturnValue[ 2 ][ 0 ] = ( xRight + xLeft ) * xTemp2;
+        xReturnValue[ 2 ][ 1 ] = ( xTop + xBottom ) * xTemp3;
+        xReturnValue[ 2 ][ 2 ] = -xFar * xTemp4;
+        xReturnValue[ 2 ][ 3 ] = static_cast< ComponentType >( -1.0 );
+        
+        xReturnValue[ 3 ][ 2 ] = -xFar * xNear * xTemp4;
 
-		return xReturnValue;
-	}
+        return xReturnValue;
+    }
 
 
-	static FORCE_INLINE Matrix4 Perspective( const ComponentType& xFOVY, const ComponentType& xAspect, const ComponentType& xNear, const ComponentType& xFar )
-	{    
+    static FORCE_INLINE Matrix4 Perspective( const ComponentType& xFOVY, const ComponentType& xAspect, const ComponentType& xNear, const ComponentType& xFar )
+    {    
         const ComponentType xY = xNear * PDE::Tan( xFOVY * static_cast< ComponentType >( PDE::PiDouble / 360.0 ) );
-		const ComponentType xX = xY * xAspect;
+        const ComponentType xX = xY * xAspect;
     
-		return Perspective( -xX, xX, -xY, xY, xNear, xFar );
-	}
+        return Perspective( -xX, xX, -xY, xY, xNear, xFar );
+    }
 
-	static FORCE_INLINE Matrix4 Translation( const Vector3& xTranslation )
-	{
-		Matrix4 xReturnValue = Identity;
-		xReturnValue.SetTranslation( xTranslation );
-		return xReturnValue;
-	}
+    static FORCE_INLINE Matrix4 Translation( const Vector3& xTranslation )
+    {
+        Matrix4 xReturnValue = Identity;
+        xReturnValue.SetTranslation( xTranslation );
+        return xReturnValue;
+    }
 
     static FORCE_INLINE Matrix4 LookAt( const Vector3& xFrom, const Vector3& xTo )
     {
@@ -401,10 +401,10 @@ public:
                             Vector4( 0.0f, 0.0f, 0.0f, 1.0f ) );
     }
 
-	static FORCE_INLINE Vector3 RotateAxisAngle( const Vector3& xPosition, const Vector3& xAxis, const float fAngle )
-	{
-		return AxisAngleRotation( xAxis, fAngle ).Upper3x3() * xPosition;
-	}
+    static FORCE_INLINE Vector3 RotateAxisAngle( const Vector3& xPosition, const Vector3& xAxis, const float fAngle )
+    {
+        return AxisAngleRotation( xAxis, fAngle ).Upper3x3() * xPosition;
+    }
 
     float Determinant() const
     {
