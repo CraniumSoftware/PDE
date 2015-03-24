@@ -1,10 +1,10 @@
-// Copyright (c) 2013 Cranium Software
+// Copyright (c) 2013, 2015 Cranium Software
 
 // ... but permission given for use in this project in accordance
 // with the license of this project
 
-#ifndef ASSERT_H
-#define ASSERT_H
+#ifndef PDE_ASSERT_H
+#define PDE_ASSERT_H
 
 #include <Compiler/Compiler.h>
 #include <Debug/Breakpoint.h>
@@ -14,7 +14,7 @@ static const bool kbDeprecatedFunctionality = false;
 namespace Debug
 {
 
-bool assertImplementation(
+bool PDEAssertImplementation(
 	bool& skip,
 	const char* const file, const int line, const char* const funcsig,
 	const char* const conditionString, const char* const formatString, ... );
@@ -30,13 +30,13 @@ bool assertImplementation(
 #pragma warning( disable : 4127 )
 #endif
 
-#define debugAssert( condition, ... ) \
+#define PDE_DEBUG_ASSERT( condition, ... ) \
 	\
 	do \
 	{ \
 		static bool lsSkip = false; \
 		if( !( condition ) && !lsSkip \
-			&& Debug::assertImplementation( \
+			&& Debug::PDEAssertImplementation( \
 				lsSkip, \
 				__FILE__, __LINE__, __FUNCSIG__, \
 				#condition, __VA_ARGS__ ) ) \

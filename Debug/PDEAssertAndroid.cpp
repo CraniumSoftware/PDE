@@ -1,9 +1,9 @@
-// Copyright (c) 2013 Cranium Software
+// Copyright (c) 2013, 2015 Cranium Software
 
 // ... but permission given for use in this project in accordance
 // with the license of this project
 
-#include "Assert.h"
+#include "PDEAssert.h"
 
 #include "Debug/Trace.h"
 
@@ -14,7 +14,7 @@
 namespace Debug
 {
 
-bool assertImplementation(
+bool PDEAssertImplementation(
 	bool& skip,
 	const char* const file, const int line, const char* const funcsig,
 	const char* const conditionString, const char* const formatString, ... )

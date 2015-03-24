@@ -3,13 +3,13 @@
 
 // double precision vector types using the Cerebro vector templates...
 
-#include "Maths/Vector.h"
+#include "Maths/PDEVector.h"
 
 class DPVector2
-: public VectorBase< double, 2 >
+: public PDE::VectorBase< double, 2 >
 {
 
-    typedef VectorBase< double, 2 > Base;
+    typedef PDE::VectorBase< double, 2 > Base;
 
 public:
 
@@ -25,8 +25,8 @@ public:
         maComponents[ 1 ] = xOther[ 1 ];
     }
 
-    double Max() const { return Maths::Max( maComponents[ 0 ], maComponents[ 1 ] ); }
-    double Min( ) const { return Maths::Min( maComponents[ 0 ], maComponents[ 1 ] ); }
+    double Max() const { return PDE::Max( maComponents[ 0 ], maComponents[ 1 ] ); }
+    double Min() const { return PDE::Min( maComponents[ 0 ], maComponents[ 1 ] ); }
 
     DPVector2 xx() const { return DPVector2( maComponents[ 0 ] ); }
     DPVector2 yy() const { return DPVector2( maComponents[ 1 ] ); }
@@ -45,19 +45,19 @@ public:
 };
 
 class DPVector3
-: public VectorBase< double, 3 >
+: public PDE::VectorBase< double, 3 >
 {
 
-    typedef VectorBase< double, 3 > Base;
+    typedef PDE::VectorBase< double, 3 > Base;
 
 public:
 
-    static const Vector3 Up;
-    static const Vector3 Down;
-    static const Vector3 Forward;
-    static const Vector3 Backward;
-    static const Vector3 Left;
-    static const Vector3 Right;
+    static const DPVector3 Up;
+    static const DPVector3 Down;
+    static const DPVector3 Forward;
+    static const DPVector3 Backward;
+    static const DPVector3 Left;
+    static const DPVector3 Right;
 
     DPVector3( const Base& v )
     {
@@ -73,40 +73,33 @@ public:
         maComponents[ 2 ] = z;
     }
 
-    DPVector3( const Vector2& v, const double z = 0.0 )
+    DPVector3( const DPVector2& v, const double z = 0.0 )
     {
         maComponents[ 0 ] = v[ 0 ];
         maComponents[ 1 ] = v[ 1 ];
         maComponents[ 2 ] = z;
     }
 
-    double Max() const { return Maths::Max( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
-    double Min() const { return Maths::Min( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
+    double Max() const { return PDE::Max( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
+    double Min() const { return PDE::Min( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ] ); }
 
     static DPVector3 FromEllipsoid( const double dLongitude, const double dLatitude, const double dPolar, const double dEquatorial )
     {
         return DPVector3(
-            dEquatorial * Maths::Sin( dLatitude ) * Maths::Cos( dLongitude ),
-            dEquatorial * Maths::Sin( dLatitude ) * Maths::Sin( dLongitude ),
-            dPolar * Maths::Cos( dLatitude ) );
+            dEquatorial * PDE::Sin( dLatitude ) * PDE::Cos( dLongitude ),
+            dEquatorial * PDE::Sin( dLatitude ) * PDE::Sin( dLongitude ),
+            dPolar * PDE::Cos( dLatitude ) );
     }
 
 };
 
 class DPVector4
-: public VectorBase< double, 4 >
+: public PDE::VectorBase< double, 4 >
 {
 
-    typedef VectorBase< double, 4 > Base;
+    typedef PDE::VectorBase< double, 4 > Base;
 
 public:
-
-    static const Vector4 White;
-    static const Vector4 Black;
-    static const Vector4 Transparent;
-    static const Vector4 Red;
-    static const Vector4 Green;
-    static const Vector4 Blue;
 
     DPVector4( const Base& v )
     {
@@ -140,8 +133,8 @@ public:
         maComponents[ 3 ] = w;
     }
 
-    double Max() const { return Maths::Max( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ], maComponents[ 3 ] ); }
-    double Min() const { return Maths::Min( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ], maComponents[ 3 ] ); }
+    double Max() const { return PDE::Max( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ], maComponents[ 3 ] ); }
+    double Min() const { return PDE::Min( maComponents[ 0 ], maComponents[ 1 ], maComponents[ 2 ], maComponents[ 3 ] ); }
 
 };
 

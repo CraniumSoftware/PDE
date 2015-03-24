@@ -1,11 +1,14 @@
-// Copyright (c) 2013 Cranium Software
+// Copyright (c) 2013, 2015 Cranium Software
 
 // ... but permission given for use in this project in accordance
 // with the license of this project
 
-#include "Vector.h"
-#include "Matrix.h"
-#include "Maths.h"
+#include "PDEVector.h"
+#include "PDEMatrix.h"
+#include "PDEMaths.h"
+
+namespace PDE
+{
 
 const Vector3 Vector3::Up( 0.0f, 1.0f, 0.0f );
 const Vector3 Vector3::Down( 0.0f, -1.0f, 0.0f );
@@ -42,10 +45,12 @@ Vector3 Vector3::MatrixMultiply( const Matrix3& xMatrix ) const
 
 Vector3 Vector3::RandomDirection()
 {
-	return Vector3( Maths::PRNGRange( -1.0f, 1.0f ), Maths::PRNGRange( -1.0f, 1.0f ), Maths::PRNGRange( -1.0f, 1.0f ) );
+    return Vector3( PDE::PRNGRange( -1.0f, 1.0f ), PDE::PRNGRange( -1.0f, 1.0f ), PDE::PRNGRange( -1.0f, 1.0f ) );
 }
 
 Vector3 Vector3::RandomNormalisedDirection()
 {
-	return Vector3( Maths::PRNGRange( -1.0f, 1.0f ), Maths::PRNGRange( -1.0f, 1.0f ), Maths::PRNGRange( -1.0f, 1.0f ) ).Normalised();
+    return Vector3( PDE::PRNGRange( -1.0f, 1.0f ), PDE::PRNGRange( -1.0f, 1.0f ), PDE::PRNGRange( -1.0f, 1.0f ) ).Normalised();
+}
+
 }
