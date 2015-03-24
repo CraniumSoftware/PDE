@@ -12,8 +12,12 @@
 
 #include "Maths/DPVector.h"
 
+#ifndef EphemerisVector4
+
 #define EphemerisVector4 DPVector4
 #define EphemerisFloat double
+
+#endif
 
 template< class Implementation, const bool bCorrectForLightTime = true >
 class OrbitalEphemeris
