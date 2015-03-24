@@ -33,6 +33,13 @@ public:
 		return static_cast< const Implementation* >( this )->EvaluateOrientation( dJDT );
 	}
 
+protected:
+
+	static double DayRateFromHourPeriod( const double dPeriod )
+	{
+		return 24.0 / dPeriod;
+	}
+
 private:
 
 };
