@@ -3,8 +3,8 @@
 // ... but permission given for use in this project in accordance
 // with the license of this project
 
-#ifndef MATHS_H
-#define MATHS_H
+#ifndef PDE_MATHS_H
+#define PDE_MATHS_H
 
 #include "Compiler/Compiler.h"
 #include "Hardware/CPU.h"
