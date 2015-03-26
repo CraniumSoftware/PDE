@@ -9,10 +9,10 @@
 #include <Compiler/Compiler.h>
 #include <Debug/Breakpoint.h>
 
-static const bool kbDeprecatedFunctionality = false;
-
 namespace Debug
 {
+
+static const bool kbDeprecatedFunctionality = false;
 
 bool PDEAssertImplementation(
 	bool& skip,

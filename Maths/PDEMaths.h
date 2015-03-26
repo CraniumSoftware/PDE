@@ -26,6 +26,8 @@ namespace PDE
 static const float PiFloat = 3.1415926535897932384f;
 static const double PiDouble = 3.1415926535897932384;
 
+#ifndef UNARY_MATHS_FUNCTION
+
 #define UNARY_MATHS_FUNCTION( ourName, theirNamef, theirName, theirNamel ) \
 template< class RealType > \
 static FORCE_INLINE RealType ourName( const RealType x ) \
@@ -52,6 +54,10 @@ FORCE_INLINE long double ourName< long double >( const long double x ) \
 { \
     return theirNamel( x ); \
 } \
+
+#endif
+
+#ifndef BINARY_MATHS_FUNCTION
 
 #define BINARY_MATHS_FUNCTION( ourName, theirNamef, theirName, theirNamel ) \
 template< class RealType > \
@@ -80,6 +86,10 @@ FORCE_INLINE long double ourName< long double >( const long double x, const long
 { \
     return theirNamel( x, y ); \
 } \
+
+#endif
+
+#ifndef UNARY_MATHS_FUNCTION_NODEFAULT
 
 #define UNARY_MATHS_FUNCTION_NODEFAULT( ourName, theirNamef, theirName, theirNamel ) \
 \
@@ -120,6 +130,8 @@ FORCE_INLINE long double ourName< long double >( const long double x, const long
 { \
     return theirNamel( x, y ); \
 } \
+
+#endif
 
 #if ANDROID
 #define sqrtl sqrt
