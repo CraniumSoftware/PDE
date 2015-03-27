@@ -18,13 +18,13 @@ public:
 	// or vice versa...
 	PDE::Vector3 CalculateNorthPole( const double dJDT ) const
 	{
-		const Matrix3 xOrientation = CalculateOrientation( dJDT );
+		const PDE::Matrix3 xOrientation = CalculateOrientation( dJDT );
 		return xOrientation[ 2 ];
 	}
 
 	PDE::Vector3 CalculateZeroLongitudeAtEquator( const double dJDT ) const
 	{
-		const Matrix3 xOrientation = CalculateOrientation( dJDT );
+		const PDE::Matrix3 xOrientation = CalculateOrientation( dJDT );
 		return xOrientation[ 1 ];
 	}
 

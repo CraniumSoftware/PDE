@@ -109,7 +109,7 @@ private:
         static const double kdAUM = 149597870700.0;
         static const double kdDayS = 86400.0;
 
-        const double kdConversionFactor = kdAUM / ( 299792458.0 * kdDayS );
+        const double kdConversionFactor = kdAUM / ( kdLightSpeedMS * kdDayS );
 
         return xDistance * static_cast< EphemerisFloat >( kdConversionFactor );
     }

@@ -13,8 +13,8 @@ double GetProfileTimer()
 
     // do not change this with using namespace. that thing is dangerous.
 
-    std::chrono::system_clock::time_point xTime = std::chrono::high_resolution_clock::now();
-    std::chrono::system_clock::duration xDuration = xTime.time_since_epoch();
+    auto xTime = std::chrono::high_resolution_clock::now();
+    auto xDuration = xTime.time_since_epoch();
 
     const double dNanoseconds = static_cast< double >( std::chrono::duration_cast< std::chrono::nanoseconds >( xDuration ).count() );
 

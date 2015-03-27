@@ -1,5 +1,5 @@
 #ifndef J2000_H
-#define J2000_h
+#define J2000_H
 
 // SE - TODO: decouple?
 

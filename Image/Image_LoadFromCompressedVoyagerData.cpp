@@ -77,12 +77,12 @@ bool Image::LoadFromCompressedVoyagerData( const void* const pFileData )
     ++iPsuedoPointer;
 
     // record bytes, should be 836
-    static const int iRecordBytes = 836;
+    //static const int iRecordBytes = 836;
     AdvancePastNextNull( pucByteStream );
     ++iPsuedoPointer;
 
     // file record count, should be 860
-    static const int iRecordCount = 860;
+    //static const int iRecordCount = 860;
     AdvancePastNextNull( pucByteStream );
     ++iPsuedoPointer;
 

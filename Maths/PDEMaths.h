@@ -158,7 +158,7 @@ FORCE_INLINE long double ourName< long double >( const long double x, const long
 #define fmodl fmod
 #endif
 
-template < class T > static inline T SquareRoot( const T xValue ) { return static_cast< T >( Maths::SquareRoot( static_cast< double >( xValue ) ) ); }
+template < class T > static inline T SquareRoot( const T xValue ) { return static_cast< T >( PDE::SquareRoot( static_cast< double >( xValue ) ) ); }
 
 UNARY_MATHS_FUNCTION( Abs, fabsf, fabs, fabsl )
 UNARY_MATHS_FUNCTION( Floor, floorf, floor, floorl )
