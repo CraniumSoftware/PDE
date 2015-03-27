@@ -16,7 +16,7 @@ Vector3 RADecToDirection( const double dRA, const double dDeclination )
 
     // rotate it by the obliquity of the ecliptic at J2000.0...
     static const float kfObliquity = PDE::Deg2Rad( 23.4392794f ); // 4444444444....
-    return Matrix4::RotateAxisAngle( Vector3::Left, xEquatorial, kfObliquity );
+    return Matrix4::RotateAxisAngle( xEquatorial, Vector3::Left, kfObliquity );
 }
 
 }
