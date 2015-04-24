@@ -40,13 +40,35 @@ public:
 
     double EvaluateSemiMajorAxis( const EphemerisFloat& xJDT ) const
     {
-        return mkxElements.SemiMajorAxis + mkxPerturbations.SemiMajorAxis * static_cast< double >( xJDT - mkxElements.JDTZero );
+        return mkxElements.SemiMajorAxis
+			+ mkxPerturbations.SemiMajorAxis * static_cast< double >( xJDT - mkxElements.JDTZero );
     }
 
     double EvaluateEccentricity( const EphemerisFloat& xJDT ) const
     {
-        return mkxElements.Eccentricity + mkxPerturbations.Eccentricity * static_cast< double >( xJDT - mkxElements.JDTZero );
+        return mkxElements.Eccentricity
+			+ mkxPerturbations.Eccentricity * static_cast< double >( xJDT - mkxElements.JDTZero );
     }
+
+	double EvaluateArgumentOfPerifocus( const EphemerisFloat& xJDT ) const
+	{
+		return mkxElements.ArgumentOfPerifocus
+			+ mkxPerturbations.ArgumentOfPerifocus * static_cast< double >( xJDT - mkxElements.JDTZero );
+	}
+
+	double EvaluateLongitudeOfAscendingNode( const EphemerisFloat& xJDT )
+	{
+		return mkxElements.LongitudeOfAscendingNode
+			+ mkxPerturbations.LongitudeOfAscendingNode * static_cast< double >( xJDT - mkxElements.JDTZero );
+	}
+
+	double EvaluateTrueAnomaly( const EphemerisFloat& dT ) const
+	{
+		const double dSemiMajorAxis = EvaluateSemiMajorAxis( dT );
+		const double dEccentricity = EvaluateEccentricity( dT );
+		return KeplerOrbitalEphemeris::EvaluateTrueAnomaly(
+			mkxElements.MeanAnomaly, mkxElements.LongitudeRate, dSemiMajorAxis, dEccentricity, dT );
+	}
 
 private:
 
@@ -81,6 +103,39 @@ public:
         UNUSED( dT );
         return xPosition;
     }
+
+	// SE - NOTE: copy and paste?!?!
+	double EvaluateSemiMajorAxis( const EphemerisFloat& xJDT ) const
+	{
+		return mkxElements.SemiMajorAxis
+			+ mkxPerturbations.SemiMajorAxis * static_cast< double >( xJDT - mkxElements.JDTZero );
+	}
+
+	double EvaluateEccentricity( const EphemerisFloat& xJDT ) const
+	{
+		return mkxElements.Eccentricity
+			+ mkxPerturbations.Eccentricity * static_cast< double >( xJDT - mkxElements.JDTZero );
+	}
+
+	double EvaluateArgumentOfPerifocus( const EphemerisFloat& xJDT ) const
+	{
+		return mkxElements.ArgumentOfPerifocus
+			+ mkxPerturbations.ArgumentOfPerifocus * static_cast< double >( xJDT - mkxElements.JDTZero );
+	}
+
+	double EvaluateLongitudeOfAscendingNode( const EphemerisFloat& xJDT )
+	{
+		return mkxElements.LongitudeOfAscendingNode
+			+ mkxPerturbations.LongitudeOfAscendingNode * static_cast< double >( xJDT - mkxElements.JDTZero );
+	}
+
+	double EvaluateTrueAnomaly( const EphemerisFloat& dT ) const
+	{
+		const double dSemiMajorAxis = EvaluateSemiMajorAxis( dT );
+		const double dEccentricity = EvaluateEccentricity( dT );
+		return KeplerOrbitalEphemeris::EvaluateTrueAnomaly(
+			mkxElements.MeanAnomaly, mkxElements.LongitudeRate, dSemiMajorAxis, dEccentricity, dT );
+	}
 
 private:
 

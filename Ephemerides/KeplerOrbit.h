@@ -54,6 +54,29 @@ public:
         return mkxElements.Eccentricity;
     }
 
+	double EvaluateArgumentOfPerifocus( const EphemerisFloat& ) const
+	{
+		return mkxElements.ArgumentOfPerifocus;
+	}
+
+	static double EvaluateTrueAnomaly(
+		const double dMeanAnomaly, const double dLongitudeRate,
+		const double dSemiMajorAxis, const double dEccentricity, const EphemerisFloat& dT )
+	{
+		const double dMeanAnomalyAtT = dMeanAnomaly + dLongitudeRate * dT;
+		const EphemerisVector4 xPositionInPlane = EvaluatePositionInPlane( dEccentricity, dSemiMajorAxis,
+			KeplerOrbitalEphemeris::EccentricAnomaly< 5 >( dMeanAnomalyAtT, dEccentricity ) );
+
+		return PDE::Atan2( xPositionInPlane.y(), xPositionInPlane.x() );
+	}
+
+	double EvaluateTrueAnomaly( const EphemerisFloat& dT ) const
+	{
+		return EvaluateTrueAnomaly(
+			mkxElements.MeanAnomaly, mkxElements.LongitudeRate,
+			mkxElements.SemiMajorAxis, mkxElements.Eccentricity, dT );
+	}
+
     static EphemerisVector4 Evaluate(
         const double dLongitudeOfAscendingNode,
         const double dInclination,
