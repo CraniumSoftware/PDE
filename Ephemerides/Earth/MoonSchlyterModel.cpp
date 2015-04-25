@@ -51,11 +51,11 @@ EphemerisVector4 MoonSchlyterOrbitalEphemeris::Perturb( const EphemerisVector4 x
 	EarthSchlyterOrbitalEphemeris xEarthEphemeris;
 	MoonSchlyterOrbitalEphemeris xMoonEphemeris;
 	const double dArgumentOfPerifocusEarth = xEarthEphemeris.EvaluateArgumentOfPerifocus( dT );
-	const double dTrueAnomalyEarth = xEarthEphemeris.EvaluateTrueAnomaly( dT );
+	//const double dTrueAnomalyEarth = xEarthEphemeris.EvaluateTrueAnomaly( dT );
 
 	const double dLongitudeOfAscendingNodeMoon = xMoonEphemeris.EvaluateLongitudeOfAscendingNode( dT );
 	const double dArgumentOfPerifocusMoon = xMoonEphemeris.EvaluateArgumentOfPerifocus( dT );
-	const double dTrueAnomalyMoon = xMoonEphemeris.EvaluateTrueAnomaly( dT );
+	//const double dTrueAnomalyMoon = xMoonEphemeris.EvaluateTrueAnomaly( dT );
 
 	const double dLongitudeSun = dMeanAnomalyEarth + dArgumentOfPerifocusEarth;
 	const double dLongitudeMoon = dMeanAnomalyMoon + dArgumentOfPerifocusMoon + dLongitudeOfAscendingNodeMoon;
@@ -85,14 +85,8 @@ EphemerisVector4 MoonSchlyterOrbitalEphemeris::Perturb( const EphemerisVector4 x
 		- 0.046 * PDE::Sin( dMeanAnomalyMoon + dArgumentOfLatitudeMoon - 2.0 * dElongationMoon )
 		+ 0.033 * PDE::Sin( dArgumentOfLatitudeMoon + 2.0 * dElongationMoon )
 		+ 0.017 * PDE::Sin( 2.0 * dMeanAnomalyMoon + dArgumentOfLatitudeMoon );
-		/*
-		-0.173 * sin(F - 2*D)
-		-0.055 * sin(Mm - F - 2*D)
-		-0.046 * sin(Mm + F - 2*D)
-		+0.033 * sin(F + 2*D)
-		+0.017 * sin(2*Mm + F)
-		*/
+
 	const double dCorrectedDistance = xPosition.xyz().Magnitude();
 
-	return PositionFromLatLonRad( CalculateLatitude( xPosition ), dCorrectedLongitude, CalculateRadius( xPosition ) );
+    return PositionFromLatLonRad( dCorrectedLatitude, dCorrectedLongitude, dCorrectedDistance );
 }

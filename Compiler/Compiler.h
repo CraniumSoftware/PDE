@@ -51,7 +51,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-#define snprintf _snprintf
+#define snprintf _snprintf_s
 
 #elif COMPILER_GCC
 
