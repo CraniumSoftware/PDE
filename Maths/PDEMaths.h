@@ -3,8 +3,8 @@
 // ... but permission given for use in this project in accordance
 // with the license of this project
 
-#ifndef MATHS_H
-#define MATHS_H
+#ifndef PDE_MATHS_H
+#define PDE_MATHS_H
 
 #include "Compiler/Compiler.h"
 #include "Hardware/CPU.h"
@@ -26,12 +26,14 @@ namespace PDE
 static const float PiFloat = 3.1415926535897932384f;
 static const double PiDouble = 3.1415926535897932384;
 
+#ifndef UNARY_MATHS_FUNCTION
+
 #define UNARY_MATHS_FUNCTION( ourName, theirNamef, theirName, theirNamel ) \
 template< class RealType > \
 static FORCE_INLINE RealType ourName( const RealType x ) \
 { \
     UNUSED( x ); \
-	PDE_DEBUG_ASSERT( std::numeric_limits< RealType >::has_quiet_NaN, "Type used for " #ourName " doesn't support quiet NAN" ); \
+    PDE_DEBUG_ASSERT( std::numeric_limits< RealType >::has_quiet_NaN, "Type used for " #ourName " doesn't support quiet NAN" ); \
     return std::numeric_limits< RealType >::has_quiet_NaN ? std::numeric_limits< RealType >::quiet_NaN() : 0; \
 } \
 \
@@ -50,16 +52,20 @@ FORCE_INLINE double ourName< double >( const double x ) \
 template<> \
 FORCE_INLINE long double ourName< long double >( const long double x ) \
 { \
-	return theirNamel( x ); \
+    return theirNamel( x ); \
 } \
+
+#endif
+
+#ifndef BINARY_MATHS_FUNCTION
 
 #define BINARY_MATHS_FUNCTION( ourName, theirNamef, theirName, theirNamel ) \
 template< class RealType > \
 static FORCE_INLINE RealType ourName( const RealType x, const RealType y ) \
 { \
     UNUSED( x ); \
-	UNUSED( y ); \
-	PDE_DEBUG_ASSERT( std::numeric_limits< RealType >::has_quiet_NaN, "Type used for " #ourName " doesn't support quiet NAN" ); \
+    UNUSED( y ); \
+    PDE_DEBUG_ASSERT( std::numeric_limits< RealType >::has_quiet_NaN, "Type used for " #ourName " doesn't support quiet NAN" ); \
     return std::numeric_limits< RealType >::has_quiet_NaN ? std::numeric_limits< RealType >::quiet_NaN() : 0; \
 } \
 \
@@ -78,8 +84,12 @@ FORCE_INLINE double ourName< double >( const double x, const double y ) \
 template<> \
 FORCE_INLINE long double ourName< long double >( const long double x, const long double y ) \
 { \
-	return theirNamel( x, y ); \
+    return theirNamel( x, y ); \
 } \
+
+#endif
+
+#ifndef UNARY_MATHS_FUNCTION_NODEFAULT
 
 #define UNARY_MATHS_FUNCTION_NODEFAULT( ourName, theirNamef, theirName, theirNamel ) \
 \
@@ -98,7 +108,7 @@ FORCE_INLINE double ourName< double >( const double x ) \
 template<> \
 FORCE_INLINE long double ourName< long double >( const long double x ) \
 { \
-	return theirNamel( x ); \
+    return theirNamel( x ); \
 } \
 
 #define BINARY_MATHS_FUNCTION_NODEFAULT( ourName, theirNamef, theirName, theirNamel ) \
@@ -120,6 +130,8 @@ FORCE_INLINE long double ourName< long double >( const long double x, const long
 { \
     return theirNamel( x, y ); \
 } \
+
+#endif
 
 #if ANDROID
 #define sqrtl sqrt
@@ -146,7 +158,7 @@ FORCE_INLINE long double ourName< long double >( const long double x, const long
 #define fmodl fmod
 #endif
 
-template < class T > static inline T SquareRoot( const T xValue ) { return static_cast< T >( Maths::SquareRoot( static_cast< double >( xValue ) ) ); }
+template < class T > static inline T SquareRoot( const T xValue ) { return static_cast< T >( PDE::SquareRoot( static_cast< double >( xValue ) ) ); }
 
 UNARY_MATHS_FUNCTION( Abs, fabsf, fabs, fabsl )
 UNARY_MATHS_FUNCTION( Floor, floorf, floor, floorl )
@@ -225,125 +237,138 @@ template < class T > static FORCE_INLINE T Clamp( const T xValue, const T xMin =
 
 static FORCE_INLINE float Wrap( const float fValue, const float fMin = 0.0f, const float fMax = 1.0f )
 {
-	PDE_DEBUG_ASSERT( fMax > fMin, "Minimum is greater than maximum!" );
+    PDE_DEBUG_ASSERT( fMax > fMin, "Minimum is greater than maximum!" );
 
-	const float fRange = fMax - fMin;
-	float fReturnValue = ( fValue - fMin ) / fRange;
-	// lazy - avoiding library floating point mod
-	const float fIntegerPart = Floor( fReturnValue );
-	fReturnValue -= fIntegerPart;
-	fReturnValue *= fRange;
-	return fReturnValue + fMin;
+    const float fRange = fMax - fMin;
+    float fReturnValue = ( fValue - fMin ) / fRange;
+    // lazy - avoiding library floating point mod
+    const float fIntegerPart = Floor( fReturnValue );
+    fReturnValue -= fIntegerPart;
+    fReturnValue *= fRange;
+    return fReturnValue + fMin;
+}
+
+static FORCE_INLINE double Wrap( const double dValue, const double dMin = 0.0, const double dMax = 1.0 )
+{
+    PDE_DEBUG_ASSERT( dMax > dMin, "Minimum is greater than maximum!" );
+
+    const double dRange = dMax - dMin;
+    double dReturnValue = ( dValue - dMin ) / dRange;
+    // lazy - avoiding library floating point mod
+    const double dIntegerPart = Floor( dReturnValue );
+    dReturnValue -= dIntegerPart;
+    dReturnValue *= dRange;
+    return dReturnValue + dMin;
 }
 
 static FORCE_INLINE unsigned int Wrap( const unsigned int uValue, const unsigned int uMin = 0, const unsigned int uMax = 1 )
 {
-	PDE_DEBUG_ASSERT( uMax > uMin, "Minimum is greater than maximum!" );
-	return uMin + ( ( uValue - uMin ) % ( uMax - uMin ) );
+    PDE_DEBUG_ASSERT( uMax > uMin, "Minimum is greater than maximum!" );
+    return uMin + ( ( uValue - uMin ) % ( uMax - uMin ) );
 }
 
 template < class T >
 static FORCE_INLINE T SmoothStep( const T& xParameter )
 {
-	return ( static_cast< T >( 3.0 ) - static_cast< T >( 2.0 ) * xParameter ) * xParameter * xParameter;
+    return ( static_cast< T >( 3.0 ) - static_cast< T >( 2.0 ) * xParameter ) * xParameter * xParameter;
 }
 
 template < class T >
 static FORCE_INLINE T SmootherStep( const T& xParameter )
 {
-	return ( ( static_cast< T >( 6.0 ) * xParameter - static_cast< T >( 15.0 ) ) * xParameter + static_cast< T >( 10.0 ) ) * xParameter * xParameter * xParameter;
+    return ( ( static_cast< T >( 6.0 ) * xParameter - static_cast< T >( 15.0 ) ) * xParameter + static_cast< T >( 10.0 ) ) * xParameter * xParameter * xParameter;
 }
 
 template < class T >
 static FORCE_INLINE T Lerp( const T& xValue1, const T& xValue2, const float fAmount )
 {
-	return xValue1 + ( xValue2 - xValue1 ) * fAmount;
+    return xValue1 + ( xValue2 - xValue1 ) * fAmount;
 }
 
 template < class T >
 static FORCE_INLINE T ClampedLerp( const T& xValue1, const T& xValue2, const float fAmount )
 {
-	return Lerp( xValue1, xValue2, Clamp( fAmount ) );
+    return Lerp( xValue1, xValue2, Clamp( fAmount ) );
 }
 
 template < class T >
 static FORCE_INLINE T CosineInterpolate( const T& xValue1, const T& xValue2, const float fAmount )
 {
-	return Lerp( xValue1, xValue2, 0.5f * ( 1.0f - Cos( PiFloat * fAmount ) ) );
+    return Lerp( xValue1, xValue2, 0.5f * ( 1.0f - Cos( PiFloat * fAmount ) ) );
 }
 
 template < class T >
 static FORCE_INLINE T SmoothStepInterpolate( const T& xValue1, const T& xValue2, const float fAmount )
 {
-	return Lerp( xValue1, xValue2, SmoothStep( fAmount ) );
+    return Lerp( xValue1, xValue2, SmoothStep( fAmount ) );
 }
 
 template < class T >
 static FORCE_INLINE T SmootherStepInterpolate( const T& xValue1, const T& xValue2, const float fAmount )
 {
-	return Lerp( xValue1, xValue2, SmootherStep( fAmount ) );
+    return Lerp( xValue1, xValue2, SmootherStep( fAmount ) );
 }
 
 template < class T >
 static FORCE_INLINE T ClampedCosineInterpolate( const T& xValue1, const T& xValue2, const float fAmount )
 {
-	return CosineInterpolate( xValue1, xValue2, Clamp( fAmount ) );
+    return CosineInterpolate( xValue1, xValue2, Clamp( fAmount ) );
 }
 
 template < class T >
 static FORCE_INLINE T ClampedSmoothStepInterpolate( const T& xValue1, const T& xValue2, const float fAmount )
 {
-	return SmoothStepInterpolate( xValue1, xValue2, Clamp( fAmount ) );
+    return SmoothStepInterpolate( xValue1, xValue2, Clamp( fAmount ) );
 }
 
 template < class T >
 static FORCE_INLINE T ClampedSmootherStepInterpolate( const T& xValue1, const T& xValue2, const float fAmount )
 {
-	return SmootherStepInterpolate( xValue1, xValue2, Clamp( fAmount ) );
+    return SmootherStepInterpolate( xValue1, xValue2, Clamp( fAmount ) );
 }
         
 template < class T >
 static FORCE_INLINE T CubicInterpolate( const T& xValue1, const T& xValue2, const T& xValue3, const T& xValue4, const float fAmount )
 {
-	const T xA = xValue4 - xValue3 + xValue2 - xValue1;
-	const T xB = xValue1 - xValue2 - xA;
-	const T xC = xValue3 - xValue1;
-	const T xD = xValue2;
+    const T xA = xValue4 - xValue3 + xValue2 - xValue1;
+    const T xB = xValue1 - xValue2 - xA;
+    const T xC = xValue3 - xValue1;
+    const T xD = xValue2;
 
-	return ( ( xA * fAmount + xB ) * fAmount + xC ) * fAmount + xD;
+    return ( ( xA * fAmount + xB ) * fAmount + xC ) * fAmount + xD;
 }
 
 template < class T >
 static FORCE_INLINE T CatmullRomInterpolate( const T& xValue1, const T& xValue2, const T& xValue3, const T& xValue4, const float fAmount )
 {
-	const T xA = 0.5f * xValue4 - 1.5f * xValue3 + 1.5f * xValue2 - 0.5f * xValue1;
-	const T xB = xValue1 - 2.5f * xValue2 + 2.0f * xValue3 - 0.5f * xValue4;
-	const T xC = 0.5f * ( xValue3 - xValue1 );
-	const T xD = xValue2;
+    const T xA = 0.5f * xValue4 - 1.5f * xValue3 + 1.5f * xValue2 - 0.5f * xValue1;
+    const T xB = xValue1 - 2.5f * xValue2 + 2.0f * xValue3 - 0.5f * xValue4;
+    const T xC = 0.5f * ( xValue3 - xValue1 );
+    const T xD = xValue2;
 
-	return ( ( xA * fAmount + xB ) * fAmount + xC ) * fAmount + xD;
+    return ( ( xA * fAmount + xB ) * fAmount + xC ) * fAmount + xD;
 }
 
 template < class T >
 static FORCE_INLINE T ClampedCubicInterpolate( const T& xValue1, const T& xValue2, const T& xValue3, const T& xValue4, const float fAmount )
 {
-	return CubicInterpolate( xValue1, xValue2, xValue3, xValue4, Clamp( fAmount ) );
+    return CubicInterpolate( xValue1, xValue2, xValue3, xValue4, Clamp( fAmount ) );
 }
 
 template < class T >
 static FORCE_INLINE T ClampedCatmullRomInterpolate( const T& xValue1, const T& xValue2, const T& xValue3, const T& xValue4, const float fAmount )
 {
-	return CatmullRomInterpolate( xValue1, xValue2, xValue3, xValue4, Clamp( fAmount ) );
+    return CatmullRomInterpolate( xValue1, xValue2, xValue3, xValue4, Clamp( fAmount ) );
 }
 
 static FORCE_INLINE float Deg2Rad( const float fDegrees )
 {
-	return ( PiFloat / 180.f ) * fDegrees;
+    return ( PiFloat / 180.f ) * fDegrees;
 }
 
 static FORCE_INLINE float Rad2Deg( const float fDegrees )
 {
-	return ( 180.f / PiFloat ) * fDegrees;
+    return ( 180.f / PiFloat ) * fDegrees;
 }
 
 static FORCE_INLINE double Deg2Rad( const double fDegrees )
@@ -365,33 +390,33 @@ static inline unsigned int SetRandomSeed( const unsigned int uSeed )
     
 static inline unsigned int NextPRNGSeed()
 {
-	
-	
-	// SE - TODO: proper seeding
-	/*
-	if( s_last == 0 )
-	{
-		s_last = ( unsigned int )( Time.realtimeSinceStartup * 100000.0 );
-	}
-	*/
+    
+    
+    // SE - TODO: proper seeding
+    /*
+    if( s_last == 0 )
+    {
+        s_last = ( unsigned int )( Time.realtimeSinceStartup * 100000.0 );
+    }
+    */
 
-	suLastSeed = ( suLastSeed * 16807 + 2147483647 ) & 0xFFFFFFFF;
-	suLastSeed = ( suLastSeed ^ ( ( suLastSeed & 0xFFFF ) << 16 ) ); // mix up the bits a bit...
-	return suLastSeed;
+    suLastSeed = ( suLastSeed * 16807 + 2147483647 ) & 0xFFFFFFFF;
+    suLastSeed = ( suLastSeed ^ ( ( suLastSeed & 0xFFFF ) << 16 ) ); // mix up the bits a bit...
+    return suLastSeed;
 }
 
 // SE - follows the broken seeming pattern of unity random range generators where
 // ints drop the highest value so they generate valid array indices if a = 0 and b = <size of array>
 static inline float PRNGRange( float a, float b )
 {
-	const float offset = static_cast< float >( static_cast< double >( NextPRNGSeed() ) / static_cast< double >( 0xFFFFFFFF ) ) * ( b - a );
-	return a + offset;
+    const float offset = static_cast< float >( static_cast< double >( NextPRNGSeed() ) / static_cast< double >( 0xFFFFFFFF ) ) * ( b - a );
+    return a + offset;
 }
 
 static inline int PRNGRange( int a, int b )
 {
-	const int offset = static_cast< int >( Floor( static_cast< float >( static_cast< double >( NextPRNGSeed() ) / static_cast< double >( 0xFFFFFFFF ) ) * static_cast< float >( b - a ) ) );
-	return a + offset;
+    const int offset = static_cast< int >( Floor( static_cast< float >( static_cast< double >( NextPRNGSeed() ) / static_cast< double >( 0xFFFFFFFF ) ) * static_cast< float >( b - a ) ) );
+    return a + offset;
 }
 
 void RegisterUnitTests();

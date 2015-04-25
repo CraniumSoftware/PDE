@@ -20,7 +20,7 @@
 
 @class ViewController;
 
-@interface NastyButtonDelegate : UIResponder <UIAlertViewDelegate>
+@interface PDENastyButtonDelegate : UIResponder <UIAlertViewDelegate>
 {
     bool mbSkip;
     bool mbBreak;
@@ -34,7 +34,7 @@
 
 @end
 
-@implementation NastyButtonDelegate
+@implementation PDENastyButtonDelegate
 
 -(id)init
 {
@@ -100,7 +100,7 @@ bool PDEAssertImplementation(
 	debugError( "Debug", "%s : %s", messageBuffer, formatBuffer );
     
 //    NSString* pxMessageString = [NSString stringWithCString: finalBuffer encoding:NSASCIIStringEncoding];
-//    NastyButtonDelegate* pxDelegate = [[NastyButtonDelegate alloc] init];
+//    PDENastyButtonDelegate* pxDelegate = [[NastyButtonDelegate alloc] init];
 //    UIAlertView* pxAlertView = [[UIAlertView alloc] initWithTitle:@"Assertion failed!"
 //        message:pxMessageString delegate:pxDelegate
 //        cancelButtonTitle:@"Break" otherButtonTitles:@"Ignore Once", @"Ignore Always", nil];
