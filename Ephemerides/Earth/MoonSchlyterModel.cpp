@@ -84,7 +84,7 @@ EphemerisVector4 MoonSchlyterOrbitalEphemeris::Perturb( const EphemerisVector4 x
 		- 0.055 * PDE::Sin( dMeanAnomalyMoon - dArgumentOfLatitudeMoon - 2.0 * dElongationMoon )
 		- 0.046 * PDE::Sin( dMeanAnomalyMoon + dArgumentOfLatitudeMoon - 2.0 * dElongationMoon )
 		+ 0.033 * PDE::Sin( dArgumentOfLatitudeMoon + 2.0 * dElongationMoon )
-		+ 0.017 * PDE::Sin( 2.0 * Mm + dArgumentOfLatitudeMoon );
+		+ 0.017 * PDE::Sin( 2.0 * dMeanAnomalyMoon + dArgumentOfLatitudeMoon );
 		/*
 		-0.173 * sin(F - 2*D)
 		-0.055 * sin(Mm - F - 2*D)

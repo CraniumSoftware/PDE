@@ -135,7 +135,7 @@ public:
 #endif
     }
 
-private:
+protected:
 
     template< int Iterations >
     static inline double EccentricAnomaly( const double dMeanAnomaly, const double dEccentricity )
