@@ -14,7 +14,7 @@ e = 0.054900
 M = 115.3654 + 13.0649929509 * d
 
 */
-const double kdEarthRadiiAU = 0.01;
+const double kdEarthRadiiAU = 6371.009 / 149597870.7;
 
 const KeplerElements MoonSchlyterOrbitalEphemeris::kxBaseElements =
 {
@@ -66,7 +66,7 @@ EphemerisVector4 MoonSchlyterOrbitalEphemeris::Perturb( const EphemerisVector4 x
 	// D = elongation moon
 	// F = latitude thing
 	const double dCorrectedLongitude = dEclipticLongitude
-		- 1.274 * PDE::Sin( dMeanAnomalyEarth - 2 * dElongationMoon )	// evection
+		- 1.274 * PDE::Sin( dMeanAnomalyEarth - 2.0 * dElongationMoon )	// evection
 		+ 0.658 * PDE::Sin( 2.0 * dElongationMoon )						// variation
 		- 0.186 * PDE::Sin( dMeanAnomalyEarth )							// yearly equation
 		- 0.059 * PDE::Sin( 2.0 * ( dMeanAnomalyMoon - dElongationMoon ) )
@@ -86,7 +86,10 @@ EphemerisVector4 MoonSchlyterOrbitalEphemeris::Perturb( const EphemerisVector4 x
 		+ 0.033 * PDE::Sin( dArgumentOfLatitudeMoon + 2.0 * dElongationMoon )
 		+ 0.017 * PDE::Sin( 2.0 * dMeanAnomalyMoon + dArgumentOfLatitudeMoon );
 
-	const double dCorrectedDistance = xPosition.xyz().Magnitude();
+    const double dCorrectedDistance = xPosition.xyz().Magnitude()
+        - 0.58 * kdEarthRadiiAU * PDE::Cos( dMeanAnomalyMoon - 2.0 * dElongationMoon )
+        - 0.46 * kdEarthRadiiAU * PDE::Cos( 2.0 * dElongationMoon );
+        ;
 
     return PositionFromLatLonRad( dCorrectedLatitude, dCorrectedLongitude, dCorrectedDistance );
 }
