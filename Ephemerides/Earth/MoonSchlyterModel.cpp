@@ -30,11 +30,11 @@ const KeplerElements MoonSchlyterOrbitalEphemeris::kxBaseElements =
 
 const KeplerElements MoonSchlyterOrbitalEphemeris::kxLinearPerturbations =
 {
-	PDE::Deg2Rad( 0.0529538083 ),
+	PDE::Deg2Rad( -0.0529538083 ),
 	0.0,
 	PDE::Deg2Rad( 0.1643573223 ),
 	0.0,
-	0.000000001151,
+	0.0,
 	0.0,
 	0.0,
 	0.0
