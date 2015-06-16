@@ -47,15 +47,15 @@ bool PDEAssertImplementation(
 
 #else
 
-#warning debugAssert macro unimplemented for this compiler!!
+#warning PDE_DEBUG_ASSERT macro unimplemented for this compiler!!
 
-#define debugAssert( ... )
+#define PDE_DEBUG_ASSERT( ... )
 
 #endif
 
 #else
 
-#define debugAssert( ... )
+#define PDE_DEBUG_ASSERT( ... )
 
 #endif
 
