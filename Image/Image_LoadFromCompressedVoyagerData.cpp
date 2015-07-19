@@ -1,5 +1,8 @@
 // Copyright (c) 2015 Semi Essessi
 
+// SE - TODO: finis this code...
+#ifndef __clang_analyzer__
+
 #include "Image.h"
 
 #include <cstdlib>
@@ -158,3 +161,5 @@ bool Image::LoadFromCompressedVoyagerData( const void* const pFileData )
 
     return false;
 }
+
+#endif
