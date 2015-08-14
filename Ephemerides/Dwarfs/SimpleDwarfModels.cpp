@@ -142,14 +142,118 @@ const KeplerElements SednaKeplerOrbitalEphemeris::kxElements =
     2457000.5 // 2014-Dec-09 00:00
 };
 
-// Haumea
-// Ixion
-// Makemake
-// Varuna
-// Quaoar
-// Salacia
-// Orcus
-// Makemake
+// 136108 Haumea
+// source JPL small body database viewed on 2015-Aug-08
+// reference: JPL 71 - /heliocentric/ coordinates with J2000.0 ecliptic
+const KeplerElements HaumeaKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 121.7916545556251 ),
+    PDE::Deg2Rad( 28.19161415528995 ),
+    PDE::Deg2Rad( 240.2004081446887 ),
+    43.21764000340052,
+    0.1912547478556349,
+    PDE::Deg2Rad( 209.0735437130571 ),
+    0.003469065521109902,
+    2457000.5 // 2014-Dec-09 00:00
+};
+
+// 28978 Ixion
+// source JPL small body database viewed on 2015-Aug-08
+// reference: JPL 14 - /heliocentric/ coordinates with J2000.0 ecliptic
+const KeplerElements IxionKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 71.03556422578181 ),
+    PDE::Deg2Rad( 19.64520131798551 ),
+    PDE::Deg2Rad( 300.2455397750147 ),
+    39.41999361876776,
+    0.2425952731158688,
+    PDE::Deg2Rad( 278.4884904068966 ),
+    0.003982256679948315,
+    2457000.5 // 2014-Dec-09 00:00
+};
+
+// 136742 Makemake
+// source JPL small body database viewed on 2015-Aug-08
+// reference: JPL 71 - /heliocentric/ coordinates with J2000.0 ecliptic
+const KeplerElements MakemakeKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 79.36613950384628 ),
+    PDE::Deg2Rad( 29.00684060166661 ),
+    PDE::Deg2Rad( 297.2390993214879 ),
+    45.71453690171564,
+    0.1558592175438621,
+    PDE::Deg2Rad( 156.353098461286 ),
+    0.003188765531626559,
+    2457000.5 // 2014-Dec-09 00:00
+};
+
+// 20000 Varuna
+// source JPL small body database viewed on 2015-Aug-08
+// reference: JPL 37 - /heliocentric/ coordinates with J2000.0 ecliptic
+const KeplerElements VarunaKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 97.26730091461472 ),
+    PDE::Deg2Rad( 17.14753975846482 ),
+    PDE::Deg2Rad( 273.0157903639222 ),
+    43.19377031145665,
+    0.05117909388906188,
+    PDE::Deg2Rad( 101.4829638116023 ),
+    0.00347194152488238,
+    2457000.5 // 2014-Dec-09 00:00
+};
+
+// 50000 Quaoar
+// source JPL small body database viewed on 2015-Aug-08
+// reference: JPL 37 - /heliocentric/ coordinates with J2000.0 ecliptic
+const KeplerElements QuaoarKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 188.8345579389557 ),
+    PDE::Deg2Rad( 7.988842301629369 ),
+    PDE::Deg2Rad( 159.6564935261298 ),
+    43.25864948316779,
+    0.03474233293930239,
+    PDE::Deg2Rad( 281.7572934271946 ),
+    0.003464133645575108,
+    2457000.5 // 2014-Dec-09 00:00
+};
+
+// 120347 Salacia
+const KeplerElements SalaciaKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 280.2081377328065 ),
+    PDE::Deg2Rad( 23.9420868140311 ),
+    PDE::Deg2Rad( 308.0081813594995 ),
+    41.90664542395922,
+    0.1073264786134232,
+    PDE::Deg2Rad( 120.3610669494239 ),
+    0.003633119875060457,
+    2457000.5 // 2014-Dec-09 00:00
+};
+
+// 90482 Orcus
+const KeplerElements OrcusKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 268.4816268588596 ),
+    PDE::Deg2Rad( 20.55201335612221	),
+    PDE::Deg2Rad( 73.39556455008014 ),
+    39.459837786342,
+    0.2184289816580147,
+    PDE::Deg2Rad( 172.5684164019101 ),
+    0.003976226638359523,
+    2457000.5 // 2014-Dec-09 00:00
+};
+
 // 2007 OR_10
+const KeplerElements Unnamed2007OR10KeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 188.8345579389557 ),
+    PDE::Deg2Rad( 7.988842301629369 ),
+    PDE::Deg2Rad( 159.6564935261298 ),
+    43.25864948316779,
+    0.003464133645575108,
+    PDE::Deg2Rad( 281.7572934271946 ),
+    0.00347194152488238,
+    2457000.5 // 2014-Dec-09 00:00
+};
 
 #undef PERIOD_TO_RATE
