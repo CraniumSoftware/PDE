@@ -6,8 +6,8 @@
 #ifndef PDE_ASSERT_H
 #define PDE_ASSERT_H
 
-#include <Compiler/Compiler.h>
-#include <Debug/Breakpoint.h>
+#include "Compiler/Compiler.h"
+#include "Debug/Breakpoint.h"
 
 namespace Debug
 {

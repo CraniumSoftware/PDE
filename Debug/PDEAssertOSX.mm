@@ -5,7 +5,7 @@
 
 #include "PDEAssert.h"
 
-#include "Debug/Trace.h"
+#include "Debug/PDETrace.h"
 
 #include <Foundation/Foundation.h>
 
@@ -34,7 +34,7 @@ bool PDEAssertImplementation(
 
 	sprintf( finalBuffer, "%s\r\n\r\n%s", messageBuffer, formatBuffer );
 
-	debugError( "Debug", "%s : %s", messageBuffer, formatBuffer );
+	PDE_DEBUG_ERROR( "Debug", "%s : %s", messageBuffer, formatBuffer );
     
     CFStringRef xHeader = CFSTR( "Assertion failed!" );
     CFStringRef xMessage = CFStringCreateWithCString( 0, finalBuffer, NSUTF8StringEncoding );
