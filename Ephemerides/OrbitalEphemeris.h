@@ -19,7 +19,7 @@
 
 #endif
 
-template< class Implementation, const bool bCorrectForLightTime = true >
+template< class Implementation, const bool bCorrectForLightTime = false >
 class OrbitalEphemeris
 {
 
