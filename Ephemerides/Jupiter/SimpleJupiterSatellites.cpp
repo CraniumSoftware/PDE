@@ -12,6 +12,19 @@ const KeplerElements IoKeplerOrbitalEphemeris::kxElements =
 
 // SE - NOTE: no idea what the reference plane is... assume ecliptic?
 
+// Source: JPL Horizons.
+const KeplerElements AmaltheaKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Rad2Deg( 249.02157 ),
+    PDE::Rad2Deg( 2.015464116682605 ),
+    PDE::Rad2Deg( 313.2507339673505 ),
+    0.0001216519191149836,
+    0.000248074833492421,
+    PDE::Rad2Deg( 65.17184176554154 ),
+    717.6869325429853,
+    2456171.5,
+};
+
 // Source: http://www.projectpluto.com/jsats.htm 2015-Aug-16
 const KeplerElements LedaKeplerOrbitalEphemeris::kxElements =
 {
