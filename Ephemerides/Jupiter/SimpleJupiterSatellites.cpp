@@ -21,7 +21,7 @@ const KeplerElements AmaltheaKeplerOrbitalEphemeris::kxElements =
     0.001216519191149836,
     0.00248074833492421,
     PDE::Rad2Deg( 65.17184176554154 ),
-    717.6869325429853,
+    71.76869325429853,
     2456171.5,
 };
 
