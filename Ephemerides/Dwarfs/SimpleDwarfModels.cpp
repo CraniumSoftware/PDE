@@ -1,6 +1,6 @@
 #include "SimpleDwarfModels.h"
 
-#define PERIOD_TO_RATE( period ) ( 360.0 / ( period ) )
+#define PERIOD_TO_RATE( period ) ( PDE::Deg2Rad( 360.0 / ( period ) ) )
 
 // NOTE: order of parameters in the struct..
 /*
@@ -47,7 +47,7 @@ const KeplerElements VestaKeplerOrbitalEphemeris::kxElements =
     2.361793227026224,
     0.08874017002173754,
     PDE::Deg2Rad( 20.86384148999364 ),
-    0.2715446587223504,
+    PDE::Deg2Rad( 0.2715446587223504 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -62,7 +62,7 @@ const KeplerElements PallasKeplerOrbitalEphemeris::kxElements =
     2.771606108489468,
     0.2312736282433415,
     PDE::Deg2Rad( 78.22870368538561 ),
-    0.2136027349980301,
+    PDE::Deg2Rad( 0.2136027349980301 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -77,7 +77,7 @@ const KeplerElements ChironKeplerOrbitalEphemeris::kxElements =
     13.63836664932805,
     0.3820988964285049,
     PDE::Deg2Rad( 134.5261255528466 ),
-    0.01956863493817369,
+    PDE::Deg2Rad( 0.01956863493817369 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -92,7 +92,7 @@ const KeplerElements CharikloKeplerOrbitalEphemeris::kxElements =
     15.76469431785065,
     0.1719643906229938,
     PDE::Deg2Rad( 63.09347765741995 ),
-    0.01574619925589365,
+    PDE::Deg2Rad( 0.01574619925589365 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -107,7 +107,7 @@ const KeplerElements PlutoKeplerOrbitalEphemeris::kxElements =
     39.4450697257358,
     0.250248713478499,
     PDE::Deg2Rad( 25.24718971218841 ),
-    0.003978459870000909,
+    PDE::Deg2Rad( 0.003978459870000909 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -123,7 +123,7 @@ const KeplerElements ErisKeplerOrbitalEphemeris::kxElements =
     67.78065340534698,
     0.4406853397111101,
     PDE::Deg2Rad( 204.1677628412649 ),
-    0.001766222639304477,
+    PDE::Deg2Rad( 0.001766222639304477 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -138,7 +138,7 @@ const KeplerElements SednaKeplerOrbitalEphemeris::kxElements =
     524.434127467771,
     0.8549069895921635,
     PDE::Deg2Rad( 358.1631284022692 ),
-    0.00008206682948862652,
+    PDE::Deg2Rad( 0.00008206682948862652 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -153,7 +153,7 @@ const KeplerElements HaumeaKeplerOrbitalEphemeris::kxElements =
     43.21764000340052,
     0.1912547478556349,
     PDE::Deg2Rad( 209.0735437130571 ),
-    0.003469065521109902,
+    PDE::Deg2Rad( 0.003469065521109902 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -168,7 +168,7 @@ const KeplerElements IxionKeplerOrbitalEphemeris::kxElements =
     39.41999361876776,
     0.2425952731158688,
     PDE::Deg2Rad( 278.4884904068966 ),
-    0.003982256679948315,
+    PDE::Deg2Rad( 0.003982256679948315 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -183,7 +183,7 @@ const KeplerElements MakemakeKeplerOrbitalEphemeris::kxElements =
     45.71453690171564,
     0.1558592175438621,
     PDE::Deg2Rad( 156.353098461286 ),
-    0.003188765531626559,
+    PDE::Deg2Rad( 0.003188765531626559 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -198,7 +198,7 @@ const KeplerElements VarunaKeplerOrbitalEphemeris::kxElements =
     43.19377031145665,
     0.05117909388906188,
     PDE::Deg2Rad( 101.4829638116023 ),
-    0.00347194152488238,
+    PDE::Deg2Rad( 0.00347194152488238 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -213,7 +213,7 @@ const KeplerElements QuaoarKeplerOrbitalEphemeris::kxElements =
     43.25864948316779,
     0.03474233293930239,
     PDE::Deg2Rad( 281.7572934271946 ),
-    0.003464133645575108,
+    PDE::Deg2Rad( 0.003464133645575108 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -226,7 +226,7 @@ const KeplerElements SalaciaKeplerOrbitalEphemeris::kxElements =
     41.90664542395922,
     0.1073264786134232,
     PDE::Deg2Rad( 120.3610669494239 ),
-    0.003633119875060457,
+    PDE::Deg2Rad( 0.003633119875060457 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -239,7 +239,7 @@ const KeplerElements OrcusKeplerOrbitalEphemeris::kxElements =
     39.459837786342,
     0.2184289816580147,
     PDE::Deg2Rad( 172.5684164019101 ),
-    0.003976226638359523,
+    PDE::Deg2Rad( 0.003976226638359523 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
@@ -252,7 +252,7 @@ const KeplerElements Unnamed2007OR10KeplerOrbitalEphemeris::kxElements =
     43.25864948316779,
     0.003464133645575108,
     PDE::Deg2Rad( 281.7572934271946 ),
-    0.00347194152488238,
+    PDE::Deg2Rad( 0.00347194152488238 ),
     2457000.5 // 2014-Dec-09 00:00
 };
 
