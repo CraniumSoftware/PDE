@@ -60,6 +60,13 @@ DECLARE_HELIOCENTRIC_KEPLER_MODEL( Unnamed2007OR10 ); // fucking astronomers...
 
 DECLARE_PRECESSING_HELIOCENTRIC_KEPLER_MODEL( Ceres );
 
+// SE - NOTE: a bit poo to read, but these are moons and body-centric, but with
+// the ecliptic as a reference plane.
+
+// SE - TODO: something better. Charon orbits the barycentre, and so does Pluto
+// but for now just stick it around Pluto...
+DECLARE_HELIOCENTRIC_KEPLER_MODEL( Charon );
+
 #undef DECLARE_HELIOCENTRIC_KEPLER_MODEL
 #undef DECLARE_PRECESSING_HELIOCENTRIC_KEPLER_MODEL
 

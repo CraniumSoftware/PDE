@@ -256,4 +256,18 @@ const KeplerElements Unnamed2007OR10KeplerOrbitalEphemeris::kxElements =
     2457000.5 // 2014-Dec-09 00:00
 };
 
+// SE - TODO: better elements for this...
+// 134340 Pluto I Charon
+const KeplerElements CharonKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 227.4116178749494 ),
+    PDE::Deg2Rad( 112.8105536210253 ),
+    PDE::Deg2Rad( 88.58399814796705 ),
+    0.0001196670044550726,
+    0.01822663648522483,
+    PDE::Deg2Rad( 353.7121718187205 ),
+    PDE::Deg2Rad( 54.433970011471440 ),
+    2456171.5,
+};
+
 #undef PERIOD_TO_RATE
