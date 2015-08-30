@@ -20,7 +20,7 @@ const KeplerElements MetisKeplerOrbitalEphemeris::kxElements =
     0.0008620661440651730,
     0.007946059897956641,
     PDE::Deg2Rad( 359.1454862030957 ),
-    1203.102420759774, // SE - TODO: really?!?!
+    PDE::Deg2Rad( 1203.102420759774 ),
     2456171.5,
 };
 
