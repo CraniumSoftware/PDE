@@ -66,6 +66,20 @@ const KeplerElements ThebeKeplerOrbitalEphemeris::kxElements =
     2456171.5,
 };
 
+// Source: JPL Horizons osculating elements - these are relative to the ecliptic
+// for certain... because thats what i asked for :)
+const KeplerElements IoKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 337.2145512233379 ),
+    PDE::Deg2Rad( 2.201269687356567 ),
+    PDE::Deg2Rad( 98.32070501224331 ),
+    0.002821049635725075,
+    0.003752318988860653,
+    PDE::Deg2Rad( 122.2240177752877 ),
+    PDE::Deg2Rad( 203.2270727974874 ),
+    2457357.5,
+};
+
 // SE - NOTE: no idea what the reference plane is... assume ecliptic?
 
 // Source: http://www.projectpluto.com/jsats.htm 2015-Aug-16
