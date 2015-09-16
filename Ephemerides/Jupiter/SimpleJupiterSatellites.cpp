@@ -80,6 +80,48 @@ const KeplerElements IoKeplerOrbitalEphemeris::kxElements =
     2457357.5,
 };
 
+// Source: JPL Horizons osculating elements - these are relative to the ecliptic
+// for certain... because thats what i asked for :)
+const KeplerElements EuropaKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 340.7659564998470 ),
+    PDE::Deg2Rad( 2.678461676229340 ),
+    PDE::Deg2Rad( 267.6474184300764 ),
+    0.004487487813609674,
+    0.009269287514518767,
+    PDE::Deg2Rad( 244.8682907676467 ),
+    0.5 * PDE::Deg2Rad( 203.2270727974874 ),
+    2457357.5,
+};
+
+// Source: JPL Horizons osculating elements - these are relative to the ecliptic
+// for certain... because thats what i asked for :)
+const KeplerElements GanymedeKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 340.8500741618403 ),
+    PDE::Deg2Rad( 2.289337328826746 ),
+    PDE::Deg2Rad( 357.1900045314197 ),
+    0.007155073783245806,
+    0.001919286233374703,
+    PDE::Deg2Rad( 33.06853497022615 ),
+    0.25 * PDE::Deg2Rad( 203.2270727974874 ),
+    2457357.5,
+};
+
+// Source: JPL Horizons osculating elements - these are relative to the ecliptic
+// for certain... because thats what i asked for :)
+const KeplerElements CallistoKeplerOrbitalEphemeris::kxElements =
+{
+    PDE::Deg2Rad( 337.1272375263306 ),
+    PDE::Deg2Rad( 1.978764514395921 ),
+    PDE::Deg2Rad( 26.51912928452954 ),
+    0.01258782275430763,
+    0.007046550009794705,
+    PDE::Deg2Rad( 177.3928942496798 ),
+    PDE::Deg2Rad( 21.56253723231748 ),
+    2457357.5,
+};
+
 // SE - NOTE: no idea what the reference plane is... assume ecliptic?
 
 // Source: http://www.projectpluto.com/jsats.htm 2015-Aug-16
