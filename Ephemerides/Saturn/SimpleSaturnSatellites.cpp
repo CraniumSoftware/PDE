@@ -71,7 +71,7 @@ const KeplerElements TitanKeplerOrbitalEphemeris::kxElements =
     PDE::Deg2Rad( 169.1214075143673 ),
     PDE::Deg2Rad( 27.69762932105365 ),
     PDE::Deg2Rad( 172.6134982086283 ),
-    0.0008620661440651730,
+    0.008620661440651730,
     0.008168240306914140,
     PDE::Deg2Rad( 344.0053191123051 ),
     PDE::Deg2Rad( 22.57382861540970 ),
