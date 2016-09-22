@@ -1,16 +1,10 @@
-// Copyright (c) 2013-2014 Cranium Software
+// Copyright (c) 2013-2014, 2016 Cranium Software
 
 // ... but permission given for use in this project in accordance
 // with the license of this project
 
 #ifndef PLATFORM_H
 #define PLATFORM_H
-
-// SE: thse don't seem to work as i intend :/
-#if WIN
-#pragma warning( disable : 4451 )
-#pragma warning( disable : 4714 )
-#endif
 
 #if !defined( WINRT )
 #define WINRT ( 0 )
@@ -59,6 +53,21 @@
 #else
 #define WP ( 0 )
 #endif
+#endif
+
+#if WIN
+#pragma warning( disable : 4451 ) // some windows universal bullshit about marshalling and refs
+#pragma warning( disable : 4514 ) // unused inline function
+#pragma warning( disable : 4626 ) // operator = was implicitly deleted (in two minds about this, but its a nuisance, and we know about this...)
+#pragma warning( disable : 4710 ) // function marked inline was not inlined
+#pragma warning( disable : 4714 ) // function marked for forced inlining was not inlined
+#pragma warning( disable : 4820 ) // padding for C struct layout rules was added (how the fuck is that a warning?!?)
+#pragma warning( disable : 5027 ) // the move flavour of operator = was implicitly deleted (in two minds about this, but its a nuisance, and we know about this...)
+#endif
+
+// SE: not sure this is the best place for this...
+#if !( defined( HACKILY_REMOVE_STB_WARNINGS ) )
+#define HACKILY_REMOVE_STB_WARNINGS ( 1 ) // should that be zero? i don't like warnings from third party stuff...
 #endif
 
 #if WIN
