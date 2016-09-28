@@ -56,6 +56,9 @@
 #endif
 
 #if WIN
+
+// windows specifics...
+
 #pragma warning( disable : 4451 ) // some windows universal bullshit about marshalling and refs
 #pragma warning( disable : 4514 ) // unused inline function
 #pragma warning( disable : 4626 ) // operator = was implicitly deleted (in two minds about this, but its a nuisance, and we know about this...)
@@ -63,6 +66,25 @@
 #pragma warning( disable : 4714 ) // function marked for forced inlining was not inlined
 #pragma warning( disable : 4820 ) // padding for C struct layout rules was added (how the fuck is that a warning?!?)
 #pragma warning( disable : 5027 ) // the move flavour of operator = was implicitly deleted (in two minds about this, but its a nuisance, and we know about this...)
+
+// make sure we build for windows 7. annoying, but necessary to do this and make sure its included before any windows.h etc.
+// constants from MSDN:
+//#define _WIN32_WINNT_NT4                    0x0400 // Windows NT 4.0
+//#define _WIN32_WINNT_WIN2K                  0x0500 // Windows 2000
+//#define _WIN32_WINNT_WINXP                  0x0501 // Windows XP
+//#define _WIN32_WINNT_WS03                   0x0502 // Windows Server 2003
+//#define _WIN32_WINNT_WIN6                   0x0600 // Windows Vista
+//#define _WIN32_WINNT_VISTA                  0x0600 // Windows Vista
+//#define _WIN32_WINNT_WS08                   0x0600 // Windows Server 2008
+//#define _WIN32_WINNT_LONGHORN               0x0600 // Windows Vista
+//#define _WIN32_WINNT_WIN7                   0x0601 // Windows 7
+//#define _WIN32_WINNT_WIN8                   0x0602 // Windows 8
+//#define _WIN32_WINNT_WINBLUE                0x0603 // Windows 8.1
+//#define _WIN32_WINNT_WINTHRESHOLD           0x0A00 // Windows 10
+//#define _WIN32_WINNT_WIN10                  0x0A00 // Windows 10
+
+#define WINVER				0x0601
+#define _WIN32_WINNT		0x0601
 #endif
 
 // SE: not sure this is the best place for this...
