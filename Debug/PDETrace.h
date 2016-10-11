@@ -8,51 +8,22 @@
 
 #include "../Compiler/Compiler.h"
 
-#if COMPILER_MS // Microsoft compiler has to be different...
-
-	#define PDE_DEBUG_TRACE( szTag, szFormatString, ... ) \
-		PDE_DEBUG_TRACE_LEVEL( 0, szTag, szFormatString, __VA_ARGS__ );
-	#define PDE_DEBUG_WARNING( szTag, szFormatString, ... ) \
-		PDE_DEBUG_TRACE_LEVEL( 1, szTag, szFormatString, __VA_ARGS__ );
-	#define PDE_DEBUG_ERROR( szTag, szFormatString, ... ) \
-		PDE_DEBUG_TRACE_LEVEL( 2, szTag, szFormatString, __VA_ARGS__ );
-
-#else
-
-	#define PDE_DEBUG_TRACE( szTag, szFormatString, args... ) \
-		PDE_DEBUG_TRACE_LEVEL( 0, szTag, szFormatString, ## args );
-	#define PDE_DEBUG_WARNING( szTag, szFormatString, args... ) \
-		PDE_DEBUG_TRACE_LEVEL( 1, szTag, szFormatString, ## args );
-	#define PDE_DEBUG_ERROR( szTag, szFormatString, args... ) \
-		PDE_DEBUG_TRACE_LEVEL( 2, szTag, szFormatString, ## args );
-
-#endif
+#define PDE_DEBUG_TRACE( szTag, ... ) \
+	PDE_DEBUG_TRACE_LEVEL( 0, szTag,  __VA_ARGS__ );
+#define PDE_DEBUG_WARNING( szTag, ... ) \
+	PDE_DEBUG_TRACE_LEVEL( 1, szTag,  __VA_ARGS__ );
+#define PDE_DEBUG_ERROR( szTag, ... ) \
+	PDE_DEBUG_TRACE_LEVEL( 2, szTag,  __VA_ARGS__ );
 
 #if !DEBUG
 
-	#if COMPILER_MS // Microsoft compiler has to be different...
+	#define PDE_DEBUG_TRACE_LEVEL( level, szTag, ... )
 
-		#define PDE_DEBUG_TRACE_LEVEL( level, szTag, szFormatString, ... )
-
-	#else
-
-		#define PDE_DEBUG_TRACE_LEVEL( level, szTag, szFormatString, args... )
-
-	#endif
 
 #else
 
-	#if COMPILER_MS // Microsoft compiler has to be different...
-
-		#define PDE_DEBUG_TRACE_LEVEL( level, szTag, szFormatString, ... ) \
-			PDETraceImplementation( level, szTag, szFormatString, __VA_ARGS__ );
-
-	#else
-
-		#define PDE_DEBUG_TRACE_LEVEL( level, szTag, szFormatString, args... ) \
-			PDETraceImplementation( level, szTag, szFormatString, ## args );
-
-	#endif
+	#define PDE_DEBUG_TRACE_LEVEL( level, szTag, ... ) \
+		PDETraceImplementation( level, szTag, __VA_ARGS__ );
 
 #endif
 
