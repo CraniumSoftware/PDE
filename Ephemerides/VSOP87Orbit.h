@@ -20,7 +20,7 @@
 	static const VSOP87Term kaxR1[];  \
 	static const VSOP87Term kaxR2[];  \
 	static const VSOP87Term kaxR3[];  \
-	static const VSOP87Term kaxR4[];
+	static const VSOP87Term kaxR4[]
 
 #define DECLARE_TERMS_LBR5 \
 	static const VSOP87Term kaxL0[];  \
@@ -61,7 +61,7 @@
     static const VSOP87Term kaxZ1[];  \
     static const VSOP87Term kaxZ2[];  \
     static const VSOP87Term kaxZ3[];  \
-    static const VSOP87Term kaxZ4[];
+    static const VSOP87Term kaxZ4[]
 
 #define DECLARE_TERMS_XYZ5 \
     static const VSOP87Term kaxX0[];  \
