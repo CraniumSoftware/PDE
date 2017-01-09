@@ -62,7 +62,7 @@ static int __stdcall CBTHook( const int code, const int firstParameter, const in
 		int ( __stdcall * )( const HHOOK )
 		>( L"user32.dll", "UnhookWindowsHookEx" );
 
-	const HWND dialogHandle = reinterpret_cast< HWND >( firstParameter );
+	const HWND dialogHandle = reinterpret_cast< HWND >( static_cast< size_t >( firstParameter ) );
 
 	if( code == 5/*HCBT_ACTIVATE*/ )
 	{
