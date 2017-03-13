@@ -1,10 +1,14 @@
-// Copyright (c) 2013-2014, 2016 Cranium Software
+// Copyright (c) 2013-2014, 2016-2017 Cranium Software
 
 // ... but permission given for use in this project in accordance
 // with the license of this project
 
 #ifndef PLATFORM_H
 #define PLATFORM_H
+
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#endif
 
 #if !defined( WINRT )
 #define WINRT ( 0 )
