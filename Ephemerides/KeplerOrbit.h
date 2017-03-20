@@ -59,6 +59,11 @@ public:
 		return mkxElements.ArgumentOfPerifocus;
 	}
 
+    double EvaluatePeriod( const EphemerisFloat& ) const
+    {
+        return 2.0 * PDE::PiDouble / mkxElements.LongitudeRate;
+    }
+
 	static double EvaluateTrueAnomaly(
 		const double dMeanAnomaly, const double dLongitudeRate,
 		const double dSemiMajorAxis, const double dEccentricity, const EphemerisFloat& dT )

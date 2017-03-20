@@ -64,6 +64,11 @@ public:
         return static_cast< const Implementation* >( this )->EvaluateEccentricity( xObserver[ 3 ] );
     }
 
+    double GetPeriod( const EphemerisVector4& xObserver ) const
+    {
+        return static_cast< const Implementation* >( this )->EvaluatePeriod( xObserver[ 3 ] );
+    }
+
 protected:
 
     // helpers for spherical coordinate type stuff
