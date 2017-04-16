@@ -69,6 +69,11 @@ public:
 		return KeplerOrbitalEphemeris::EvaluateTrueAnomaly(
 			mkxElements.MeanAnomaly, mkxElements.LongitudeRate, dSemiMajorAxis, dEccentricity, dT );
 	}
+    
+    double EvaluatePeriod( const EphemerisFloat& ) const
+    {
+        return 2.0 * PDE::PiDouble / mkxElements.LongitudeRate;
+    }
 
 private:
 
