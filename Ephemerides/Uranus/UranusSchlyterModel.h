@@ -23,6 +23,11 @@ public:
     {
         return kxBaseElements.MeanAnomaly + kxBaseElements.LongitudeRate * dT;
     }
+    
+    static double EvaluatePeriod( const double )
+    {
+        return 2.0 * PDE::PiDouble / kxBaseElements.LongitudeRate;
+    }
 
 private:
 
