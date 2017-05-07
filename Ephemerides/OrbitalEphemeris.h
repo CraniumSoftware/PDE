@@ -68,6 +68,11 @@ public:
     {
         return static_cast< const Implementation* >( this )->EvaluatePeriod( xObserver[ 3 ] );
     }
+    
+    double GetSemiMajorAxis( const EphemerisVector4& xObserver ) const
+    {
+        return static_cast< const Implementation* >( this )->EvaluateSemiMajorAxis( xObserver[ 3 ] );
+    }
 
 protected:
 
