@@ -40,7 +40,7 @@ EphemerisVector4 UranusSchlyterOrbitalEphemeris::Perturb( const EphemerisVector4
     const double dMeanAnomalyUranus = MeanAnomaly( dT );
 
     const double dCorrectedLongitude = dEclipticLongitude + PDE::Deg2Rad(
-        +0.040 * PDE::Sin( dMeanAnomalySaturn - 2.0 * dMeanAnomalyUranus + PDE::Deg2Rad( 6.0 ) )
+        + 0.040 * PDE::Sin( dMeanAnomalySaturn - 2.0 * dMeanAnomalyUranus + PDE::Deg2Rad( 6.0 ) )
         + 0.035 * PDE::Sin( dMeanAnomalySaturn - 3.0 * dMeanAnomalyUranus + PDE::Deg2Rad( 33.0 ) )
         - 0.015 * PDE::Sin( dMeanAnomalyJupiter - dMeanAnomalyUranus + PDE::Deg2Rad( 20.0 ) ) );
 

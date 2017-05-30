@@ -66,25 +66,25 @@ EphemerisVector4 MoonSchlyterOrbitalEphemeris::Perturb( const EphemerisVector4 x
 	// D = elongation moon
 	// F = latitude thing
 	const double dCorrectedLongitude = dEclipticLongitude
-		- 1.274 * PDE::Sin( dMeanAnomalyEarth - 2.0 * dElongationMoon )	// evection
-		+ 0.658 * PDE::Sin( 2.0 * dElongationMoon )						// variation
-		- 0.186 * PDE::Sin( dMeanAnomalyEarth )							// yearly equation
-		- 0.059 * PDE::Sin( 2.0 * ( dMeanAnomalyMoon - dElongationMoon ) )
-		- 0.057 * PDE::Sin( dMeanAnomalyMoon - 2.0 * dElongationMoon + dMeanAnomalyEarth )
-		+ 0.053 * PDE::Sin( dMeanAnomalyMoon + 2.0 * dElongationMoon )
-		+ 0.046 * PDE::Sin( 2.0 * dElongationMoon - dMeanAnomalyEarth )
-		+ 0.041 * PDE::Sin( dMeanAnomalyMoon - dMeanAnomalyEarth )
-		- 0.035 * PDE::Sin( dElongationMoon )							// parallactic equation
-		- 0.031 * PDE::Sin( dMeanAnomalyMoon + dMeanAnomalyEarth )
-		- 0.015 * PDE::Sin( 2.0 * ( dArgumentOfLatitudeMoon - dElongationMoon ) )
-		+ 0.011 * PDE::Sin( dMeanAnomalyMoon - 4.0 * dElongationMoon );
+        - PDE::Deg2Rad( 1.274 ) * PDE::Sin( dMeanAnomalyEarth - 2.0 * dElongationMoon )	// evection
+        + PDE::Deg2Rad( 0.658 ) * PDE::Sin( 2.0 * dElongationMoon )						// variation
+        - PDE::Deg2Rad( 0.186 ) * PDE::Sin( dMeanAnomalyEarth )							// yearly equation
+        - PDE::Deg2Rad( 0.059 ) * PDE::Sin( 2.0 * ( dMeanAnomalyMoon - dElongationMoon ) )
+        - PDE::Deg2Rad( 0.057 ) * PDE::Sin( dMeanAnomalyMoon - 2.0 * dElongationMoon + dMeanAnomalyEarth )
+        + PDE::Deg2Rad( 0.053 ) * PDE::Sin( dMeanAnomalyMoon + 2.0 * dElongationMoon )
+        + PDE::Deg2Rad( 0.046 ) * PDE::Sin( 2.0 * dElongationMoon - dMeanAnomalyEarth )
+        + PDE::Deg2Rad( 0.041 ) * PDE::Sin( dMeanAnomalyMoon - dMeanAnomalyEarth )
+        - PDE::Deg2Rad( 0.035 ) * PDE::Sin( dElongationMoon )							// parallactic equation
+        - PDE::Deg2Rad( 0.031 ) * PDE::Sin( dMeanAnomalyMoon + dMeanAnomalyEarth )
+        - PDE::Deg2Rad( 0.015 ) * PDE::Sin( 2.0 * ( dArgumentOfLatitudeMoon - dElongationMoon ) )
+        + PDE::Deg2Rad( 0.011 ) * PDE::Sin( dMeanAnomalyMoon - 4.0 * dElongationMoon );
 
 	const double dCorrectedLatitude = dEclipticLatitude
-		- 0.173 * PDE::Sin( dArgumentOfLatitudeMoon - 2.0 * dElongationMoon )
-		- 0.055 * PDE::Sin( dMeanAnomalyMoon - dArgumentOfLatitudeMoon - 2.0 * dElongationMoon )
-		- 0.046 * PDE::Sin( dMeanAnomalyMoon + dArgumentOfLatitudeMoon - 2.0 * dElongationMoon )
-		+ 0.033 * PDE::Sin( dArgumentOfLatitudeMoon + 2.0 * dElongationMoon )
-		+ 0.017 * PDE::Sin( 2.0 * dMeanAnomalyMoon + dArgumentOfLatitudeMoon );
+        - PDE::Deg2Rad( 0.173 ) * PDE::Sin( dArgumentOfLatitudeMoon - 2.0 * dElongationMoon )
+        - PDE::Deg2Rad( 0.055 ) * PDE::Sin( dMeanAnomalyMoon - dArgumentOfLatitudeMoon - 2.0 * dElongationMoon )
+        - PDE::Deg2Rad( 0.046 ) * PDE::Sin( dMeanAnomalyMoon + dArgumentOfLatitudeMoon - 2.0 * dElongationMoon )
+        + PDE::Deg2Rad( 0.033 ) * PDE::Sin( dArgumentOfLatitudeMoon + 2.0 * dElongationMoon )
+        + PDE::Deg2Rad( 0.017 ) * PDE::Sin( 2.0 * dMeanAnomalyMoon + dArgumentOfLatitudeMoon );
 
     const double dCorrectedDistance = xPosition.xyz().Magnitude()
         - 0.58 * kdEarthRadiiAU * PDE::Cos( dMeanAnomalyMoon - 2.0 * dElongationMoon )
