@@ -56,6 +56,20 @@ public:
         
         return *this;
     }
+    
+    bool ApproximatelyEquals( const VectorBase& xOther, const BaseType& dAmount ) const
+    {
+        VectorBase xDifference = ( *this - xOther ) / this->Magnitude();
+        for( int i = 0; i < iComponentCount; ++i )
+        {
+            if( PDE::Abs( xDifference[ i ] ) > dAmount )
+            {
+                return false;
+            }
+        }
+        
+        return true;
+    }
 
     bool operator ==( const VectorBase& v ) const
     {
