@@ -1,4 +1,4 @@
-// Copyright (c) 2013, 2015 Cranium Software
+// Copyright (c) 2013, 2015-2016 Cranium Software
 
 // ... but permission given for use in this project in accordance
 // with the license of this project
@@ -6,6 +6,7 @@
 #include "PDETrace.h"
 
 #include <cstdarg>
+#include <cstdio>
 #include <cstdlib>
 
 #include <android/log.h>
