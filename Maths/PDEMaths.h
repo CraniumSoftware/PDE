@@ -160,7 +160,7 @@ FORCE_INLINE long double ourName< long double >( const long double x, const long
 
 template < class T > static inline T SquareRoot( const T xValue ) { return static_cast< T >( PDE::SquareRoot( static_cast< double >( xValue ) ) ); }
 
-UNARY_MATHS_FUNCTION( Abs, fabsf, fabs, fabsl )
+UNARY_MATHS_FUNCTION( Abs, fabsf, fabs, std::fabs )
 UNARY_MATHS_FUNCTION( Floor, floorf, floor, floorl )
 UNARY_MATHS_FUNCTION( Ceil, ceilf, ceil, ceill )
 UNARY_MATHS_FUNCTION_NODEFAULT( SquareRoot, sqrtf, sqrt, sqrtl )
