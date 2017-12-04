@@ -20,7 +20,7 @@ const KeplerElements MoonSchlyterOrbitalEphemeris::kxBaseElements =
 {
 	PDE::Deg2Rad( 125.1228 ),
 	PDE::Deg2Rad( 5.1454 ),
-	PDE::Deg2Rad( 282.9404 ),
+	PDE::Deg2Rad( 318.0634 ),
 	-60.2666 * kdEarthRadiiAU,
 	0.054900,
 	PDE::Deg2Rad( 115.3654 ),
