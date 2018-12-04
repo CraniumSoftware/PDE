@@ -62,6 +62,7 @@
     return mbDone;
 }
 
+/*
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     UNUSED( alertView );
@@ -72,6 +73,7 @@
     LWSync();
     mbDone = true;
 }
+*/
 
 @end
 
